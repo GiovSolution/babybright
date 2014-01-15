@@ -45,6 +45,7 @@ var anamnesa_searchForm;
 var lr_searchWindow;
 var anamnesa_SelectedRow;
 var anamnesa_ContextMenu;
+var anamnesa_ContextMenu;
 //for detail data
 var anamnesa_problem_DataStor;
 var lr_detailListEditorGrid;

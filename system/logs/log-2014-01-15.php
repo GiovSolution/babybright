@@ -10,3 +10,6 @@ ERROR - 2014-01-15 11:39:46 --> Severity: Warning  --> unlink(/Applications/MAMP
 ERROR - 2014-01-15 11:39:46 --> Severity: Notice  --> Undefined index:  dapaket_stat_dok /Applications/MAMP/htdocs/babybright/system/application/controllers/c_master_jual_rawat.php 251
 ERROR - 2014-01-15 11:39:46 --> Severity: Notice  --> Undefined index:  dapaket_nobukti_pajak /Applications/MAMP/htdocs/babybright/system/application/controllers/c_master_jual_rawat.php 254
 ERROR - 2014-01-15 11:39:46 --> Severity: Notice  --> Undefined index:  dapaket_nobukti_medis /Applications/MAMP/htdocs/babybright/system/application/controllers/c_master_jual_rawat.php 255
+ERROR - 2014-01-15 14:36:19 --> Severity: Notice  --> Undefined index:  dapaket_stat_dok /Applications/MAMP/htdocs/babybright/system/application/controllers/c_master_jual_rawat.php 251
+ERROR - 2014-01-15 14:36:19 --> Severity: Notice  --> Undefined index:  dapaket_nobukti_pajak /Applications/MAMP/htdocs/babybright/system/application/controllers/c_master_jual_rawat.php 254
+ERROR - 2014-01-15 14:36:19 --> Severity: Notice  --> Undefined index:  dapaket_nobukti_medis /Applications/MAMP/htdocs/babybright/system/application/controllers/c_master_jual_rawat.php 255
