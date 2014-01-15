@@ -48,6 +48,7 @@ var anamnesa_ContextMenu;
 //for detail data
 var anamnesa_problem_DataStor;
 var lr_detailListEditorGrid;
+var lr_planListEditorGrid;
 var lr_detail_ColumnModel;
 var anamnesa_problem_proxy;
 var anamnesa_problem_writer;
@@ -1265,11 +1266,78 @@ Ext.onReady(function(){
 		lr_detailListEditorGrid.getSelectionModel().selectRow(0);
 		editor_lr_detail.startEditing(0);
 	}
+
+	//function for editor of detail
+	var editor_lr_plan= new Ext.ux.grid.RowEditor({
+        saveText: 'Update'
+    });
+	//eof
+	
+	//declaration of detail coloumn model
+	lr_plan_ColumnModel = new Ext.grid.ColumnModel(
+		[
+		{
+			header: 'Subject',
+			dataIndex: 'dlr_subject',
+			width: 150,
+			sortable: true,
+			editor: combo_subject
+		},
+		{
+			header: 'Report',
+			dataIndex: 'dlr_report',
+			width: 150,
+			sortable: true,
+			editor: new Ext.form.TextArea({
+				maxLength: 500
+          	})
+		}]
+	);
+	lr_plan_ColumnModel.defaultSortable= true;
+	//eof
+
+	//declaration of detail list editor grid
+	lr_planListEditorGrid =  new Ext.grid.EditorGridPanel({
+		id: 'lr_planListEditorGrid',
+		el: 'fp_lesson_plan',
+		title: 'Lesson Plan',
+		height: 250,
+		width: 690,
+		autoScroll: true,
+		store: lr_detail_DataStore, // DataStore
+		colModel: lr_plan_ColumnModel, // Nama-nama Columns
+		enableColLock:false,
+		region: 'center',
+        margins: '0 5 5 5',
+		plugins: [editor_lr_plan],
+		frame: true,
+		clicksToEdit:2, // 2xClick untuk bisa meng-Edit inLine Data
+		selModel: new Ext.grid.RowSelectionModel({singleSelect:false}),
+		viewConfig: { forceFit:true}
+		<?php if(eregi('U|C',$this->m_security->get_access_group_by_kode('MENU_LESSONREPORT'))){ ?>
+		,
+		tbar: [
+		{
+			text: 'Add',
+			tooltip: 'Add new detail record',
+			iconCls:'icon-adds',    				// this is defined in our styles.css
+			handler: lr_detail_add
+		}, '-',{
+			text: 'Delete',
+			tooltip: 'Delete detail selected record',
+			iconCls:'icon-delete',
+			handler: lr_detail_confirm_delete
+		}
+		]
+		<?php } ?>
+	});
+	//eof
 	
 	//function for refresh detail
 	function refresh_anamnesa_problem(){
 		lr_detail_DataStore.commitChanges();
 		lr_detailListEditorGrid.getView().refresh();
+		lr_planListEditorGrid.getView().refresh();
 	}
 	//eof
 	
@@ -1390,7 +1458,7 @@ Ext.onReady(function(){
 		bodyStyle:'padding:5px',
 		autoHeight:true,
 		width: 700,        
-		items: [anamnesa_masterGroup,lr_detailListEditorGrid],
+		items: [anamnesa_masterGroup,lr_planListEditorGrid,lr_detailListEditorGrid],
 		buttons: [
 			<?php if(eregi('U|C',$this->m_security->get_access_group_by_kode('MENU_LESSONREPORT'))){ ?>
 			{
@@ -1878,6 +1946,7 @@ Ext.onReady(function(){
 	<div class="col">
         <div id="fp_lesson_report"></div>
          <div id="fp_lesson_report_problem"></div>
+         <div id="fp_lesson_plan"></div>
 		<div id="elwindow_lesson_report_create"></div>
         <div id="elwindow_lesson_report_search"></div>
     </div>
