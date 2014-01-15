@@ -1,0 +1,35 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2013-06-28 12:01:55 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_perawatan.php 42
+ERROR - 2013-06-28 12:04:02 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_perawatan.php 42
+ERROR - 2013-06-28 12:04:41 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_perawatan.php 42
+ERROR - 2013-06-28 12:46:34 --> Severity: Notice  --> Undefined index:  kategori_creator /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 93
+ERROR - 2013-06-28 12:46:34 --> Severity: Notice  --> Undefined index:  kategori_date_create /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 96
+ERROR - 2013-06-28 12:46:34 --> Severity: Notice  --> Undefined index:  kategori_update /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 97
+ERROR - 2013-06-28 12:46:34 --> Severity: Notice  --> Undefined index:  kategori_date_update /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 100
+ERROR - 2013-06-28 12:46:34 --> Severity: Notice  --> Undefined index:  kategori_revised /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 101
+ERROR - 2013-06-28 12:46:55 --> Severity: Notice  --> Undefined index:  kategori_creator /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 93
+ERROR - 2013-06-28 12:46:55 --> Severity: Notice  --> Undefined index:  kategori_date_create /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 96
+ERROR - 2013-06-28 12:46:55 --> Severity: Notice  --> Undefined index:  kategori_update /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 97
+ERROR - 2013-06-28 12:46:55 --> Severity: Notice  --> Undefined index:  kategori_date_update /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 100
+ERROR - 2013-06-28 12:46:55 --> Severity: Notice  --> Undefined index:  kategori_revised /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 101
+ERROR - 2013-06-28 12:47:13 --> Severity: Notice  --> Undefined index:  kategori_creator /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 93
+ERROR - 2013-06-28 12:47:13 --> Severity: Notice  --> Undefined index:  kategori_date_create /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 96
+ERROR - 2013-06-28 12:47:13 --> Severity: Notice  --> Undefined index:  kategori_update /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 97
+ERROR - 2013-06-28 12:47:13 --> Severity: Notice  --> Undefined index:  kategori_date_update /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 100
+ERROR - 2013-06-28 12:47:13 --> Severity: Notice  --> Undefined index:  kategori_revised /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 101
+ERROR - 2013-06-28 12:47:31 --> Severity: Notice  --> Undefined index:  kategori_creator /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 93
+ERROR - 2013-06-28 12:47:31 --> Severity: Notice  --> Undefined index:  kategori_date_create /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 96
+ERROR - 2013-06-28 12:47:31 --> Severity: Notice  --> Undefined index:  kategori_update /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 97
+ERROR - 2013-06-28 12:47:31 --> Severity: Notice  --> Undefined index:  kategori_date_update /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 100
+ERROR - 2013-06-28 12:47:31 --> Severity: Notice  --> Undefined index:  kategori_revised /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 101
+ERROR - 2013-06-28 12:47:48 --> Severity: Notice  --> Undefined index:  kategori_creator /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 93
+ERROR - 2013-06-28 12:47:48 --> Severity: Notice  --> Undefined index:  kategori_date_create /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 96
+ERROR - 2013-06-28 12:47:48 --> Severity: Notice  --> Undefined index:  kategori_update /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 97
+ERROR - 2013-06-28 12:47:48 --> Severity: Notice  --> Undefined index:  kategori_date_update /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 100
+ERROR - 2013-06-28 12:47:48 --> Severity: Notice  --> Undefined index:  kategori_revised /Applications/MAMP/htdocs/babybright/system/application/controllers/c_kategori.php 101
+ERROR - 2013-06-28 13:08:57 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_perawatan.php 42
+ERROR - 2013-06-28 13:10:20 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_perawatan.php 42
+ERROR - 2013-06-28 13:31:56 --> Severity: Notice  --> Undefined index:  jpaket_diskon /Applications/MAMP/htdocs/babybright/system/application/controllers/c_master_jual_paket.php 486
+ERROR - 2013-06-28 13:32:51 --> Severity: Notice  --> Undefined index:  jpaket_diskon /Applications/MAMP/htdocs/babybright/system/application/controllers/c_master_jual_paket.php 486
+ERROR - 2013-06-28 13:51:34 --> Severity: Notice  --> Undefined index:  mode_edit /Applications/MAMP/htdocs/babybright/system/application/controllers/c_appointment.php 198

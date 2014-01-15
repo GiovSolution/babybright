@@ -1,0 +1,37 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2013-05-16 12:22:00 --> Severity: Notice  --> Undefined index:  kategori_creator /Applications/MAMP/htdocs/mis/system/application/controllers/c_kategori.php 117
+ERROR - 2013-05-16 12:22:00 --> Severity: Notice  --> Undefined index:  kategori_date_create /Applications/MAMP/htdocs/mis/system/application/controllers/c_kategori.php 120
+ERROR - 2013-05-16 12:22:00 --> Severity: Notice  --> Undefined index:  kategori_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_kategori.php 121
+ERROR - 2013-05-16 12:22:00 --> Severity: Notice  --> Undefined index:  kategori_date_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_kategori.php 124
+ERROR - 2013-05-16 12:22:00 --> Severity: Notice  --> Undefined index:  kategori_revised /Applications/MAMP/htdocs/mis/system/application/controllers/c_kategori.php 125
+ERROR - 2013-05-16 12:22:08 --> Severity: Notice  --> Undefined index:  kategori_creator /Applications/MAMP/htdocs/mis/system/application/controllers/c_kategori.php 117
+ERROR - 2013-05-16 12:22:08 --> Severity: Notice  --> Undefined index:  kategori_date_create /Applications/MAMP/htdocs/mis/system/application/controllers/c_kategori.php 120
+ERROR - 2013-05-16 12:22:08 --> Severity: Notice  --> Undefined index:  kategori_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_kategori.php 121
+ERROR - 2013-05-16 12:22:08 --> Severity: Notice  --> Undefined index:  kategori_date_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_kategori.php 124
+ERROR - 2013-05-16 12:22:08 --> Severity: Notice  --> Undefined index:  kategori_revised /Applications/MAMP/htdocs/mis/system/application/controllers/c_kategori.php 125
+ERROR - 2013-05-16 12:22:36 --> Severity: Notice  --> Undefined index:  gudang_creator /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 117
+ERROR - 2013-05-16 12:22:36 --> Severity: Notice  --> Undefined index:  gudang_date_create /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 120
+ERROR - 2013-05-16 12:22:36 --> Severity: Notice  --> Undefined index:  gudang_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 121
+ERROR - 2013-05-16 12:22:36 --> Severity: Notice  --> Undefined index:  gudang_date_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 124
+ERROR - 2013-05-16 12:22:36 --> Severity: Notice  --> Undefined index:  gudang_revised /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 125
+ERROR - 2013-05-16 12:22:42 --> Severity: Notice  --> Undefined index:  gudang_creator /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 117
+ERROR - 2013-05-16 12:22:42 --> Severity: Notice  --> Undefined index:  gudang_date_create /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 120
+ERROR - 2013-05-16 12:22:42 --> Severity: Notice  --> Undefined index:  gudang_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 121
+ERROR - 2013-05-16 12:22:42 --> Severity: Notice  --> Undefined index:  gudang_date_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 124
+ERROR - 2013-05-16 12:22:42 --> Severity: Notice  --> Undefined index:  gudang_revised /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 125
+ERROR - 2013-05-16 12:23:53 --> Severity: Notice  --> Undefined index:  gudang_creator /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 117
+ERROR - 2013-05-16 12:23:53 --> Severity: Notice  --> Undefined index:  gudang_date_create /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 120
+ERROR - 2013-05-16 12:23:53 --> Severity: Notice  --> Undefined index:  gudang_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 121
+ERROR - 2013-05-16 12:23:53 --> Severity: Notice  --> Undefined index:  gudang_date_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 124
+ERROR - 2013-05-16 12:23:53 --> Severity: Notice  --> Undefined index:  gudang_revised /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 125
+ERROR - 2013-05-16 12:23:53 --> Severity: Notice  --> Undefined index:  gudang_creator /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 117
+ERROR - 2013-05-16 12:23:53 --> Severity: Notice  --> Undefined index:  gudang_date_create /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 120
+ERROR - 2013-05-16 12:23:53 --> Severity: Notice  --> Undefined index:  gudang_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 121
+ERROR - 2013-05-16 12:23:53 --> Severity: Notice  --> Undefined index:  gudang_date_update /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 124
+ERROR - 2013-05-16 12:23:53 --> Severity: Notice  --> Undefined index:  gudang_revised /Applications/MAMP/htdocs/mis/system/application/controllers/c_gudang.php 125
+ERROR - 2013-05-16 14:31:56 --> Severity: Notice  --> Undefined variable: tahun /Applications/MAMP/htdocs/mis/system/application/views/main/v_lap_jual_produk.php 82
+ERROR - 2013-05-16 14:33:00 --> Severity: Notice  --> Undefined index:  cabang /Applications/MAMP/htdocs/mis/system/application/controllers/c_lap_terima_kas.php 116
+ERROR - 2013-05-16 14:33:00 --> Severity: Notice  --> Undefined index:  tgl_awal /Applications/MAMP/htdocs/mis/system/application/controllers/c_lap_terima_kas.php 117
+ERROR - 2013-05-16 14:33:00 --> Severity: Notice  --> Undefined index:  tgl_akhir /Applications/MAMP/htdocs/mis/system/application/controllers/c_lap_terima_kas.php 118
+ERROR - 2013-05-16 14:33:00 --> Severity: Notice  --> Undefined index:  periode /Applications/MAMP/htdocs/mis/system/application/controllers/c_lap_terima_kas.php 119
