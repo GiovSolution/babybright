@@ -1,6 +1,7 @@
 <?
 /* 	
 	GIOV Solution - Keep IT Simple
+	opo konnn!! iki sip iki!!
 */
 ?>
 <div id="welcome">
