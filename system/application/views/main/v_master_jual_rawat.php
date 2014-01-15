@@ -3446,7 +3446,7 @@ Ext.override(Ext.form.Field, {
 	/* Identify  jrawat_nobukti Field */
 	jrawat_nobuktiField= new Ext.form.TextField({
 		id: 'jrawat_nobuktiField',
-		fieldLabel: 'No Faktur',
+		fieldLabel: 'Invoice No',
 		emptyText : '(Auto)',
 		disabled : true,
 		readOnly:true
@@ -3908,10 +3908,10 @@ Ext.override(Ext.form.Field, {
 	/* Identify  jrawat_cara Field */
 	jrawat_caraField= new Ext.form.ComboBox({
 		id: 'jrawat_caraField',
-		fieldLabel: 'Cara Bayar',
+		fieldLabel: 'Payment Method',
 		store:new Ext.data.SimpleStore({
 			fields:['jrawat_cara_value', 'jrawat_cara_display'],
-			data:[['tunai','Tunai'],['kwitansi','Kuitansi'],['card','Kartu Kredit'],['cek/giro','Cek/Giro'],['transfer','Transfer']]
+			data:[['tunai','Cash'],['kwitansi','Kuitansi'],['card','Credit Card'],['cek/giro','Cheque/Giro'],['transfer','Transfer']]
 		}),
 		mode: 'local',
 		displayField: 'jrawat_cara_display',
@@ -3923,10 +3923,10 @@ Ext.override(Ext.form.Field, {
 	/* Identify  jrawat_cara2 Field */
 	jrawat_cara2Field= new Ext.form.ComboBox({
 		id: 'jrawat_cara2Field',
-		fieldLabel: 'Cara Bayar 2',
+		fieldLabel: 'Payment Method 2',
 		store:new Ext.data.SimpleStore({
 			fields:['jrawat_cara_value', 'jrawat_cara_display'],
-			data:[['tunai','Tunai'],['kwitansi','Kuitansi'],['card','Kartu Kredit'],['cek/giro','Cek/Giro'],['transfer','Transfer']]
+			data:[['tunai','Cash'],['kwitansi','Kuitansi'],['card','Credit Card'],['cek/giro','Cheque/Giro'],['transfer','Transfer']]
 		}),
 		mode: 'local',
 		displayField: 'jrawat_cara_display',
@@ -3938,10 +3938,10 @@ Ext.override(Ext.form.Field, {
 	/* Identify  jrawat_cara3 Field */
 	jrawat_cara3Field= new Ext.form.ComboBox({
 		id: 'jrawat_cara3Field',
-		fieldLabel: 'Cara Bayar 3',
+		fieldLabel: 'Payment Method 3',
 		store:new Ext.data.SimpleStore({
 			fields:['jrawat_cara_value', 'jrawat_cara_display'],
-			data:[['tunai','Tunai'],['kwitansi','Kuitansi'],['card','Kartu Kredit'],['cek/giro','Cek/Giro'],['transfer','Transfer']]
+			data:[['tunai','Cash'],['kwitansi','Kuitansi'],['card','Credit Card'],['cek/giro','Cheque/Giro'],['transfer','Transfer']]
 		}),
 		mode: 'local',
 		displayField: 'jrawat_cara_display',
@@ -3988,20 +3988,20 @@ Ext.override(Ext.form.Field, {
 	/* Identify  jrawat_keterangan Field */
 	jrawat_keteranganField= new Ext.form.TextArea({
 		id: 'jrawat_keteranganField',
-		fieldLabel: 'Keterangan',
+		fieldLabel: 'Notes',
 		maxLength: 250,
 		anchor: '95%'
 	});
 	
 	jrawat_voucher_noField= new Ext.form.TextField({
 		id: 'jrawat_voucher_noField',
-		fieldLabel: 'Nomor Voucher',
+		fieldLabel: 'Voucher No',
 		maxLength: 10,
 		anchor: '95%'
 	});
 	jrawat_voucher_cashback_cfField= new Ext.form.TextField({
 		id: 'jrawat_voucher_cashback_cfField',
-		fieldLabel: 'Nilai Cashback',
+		fieldLabel: 'Cashback',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4011,7 +4011,7 @@ Ext.override(Ext.form.Field, {
 	jrawat_voucher_cashbackField= new Ext.form.NumberField({
 		id: 'jrawat_voucher_cashbackField',
 		enableKeyEvents: true,
-		fieldLabel: 'Nilai Cashback',
+		fieldLabel: 'Cashback',
 		allowBlank: true,
 		anchor: '95%',
 		maskRe: /([0-9]+)$/
@@ -4040,14 +4040,14 @@ Ext.override(Ext.form.Field, {
 
 	jrawat_voucher_no2Field= new Ext.form.TextField({
 		id: 'jrawat_voucher_no2Field',
-		fieldLabel: 'Nomor Voucher',
+		fieldLabel: 'Voucher No',
 		maxLength: 10,
 		anchor: '95%'
 	});
 
 	jrawat_voucher_cashback2_cfField= new Ext.form.TextField({
 		id: 'jrawat_voucher_cashback2_cfField',
-		fieldLabel: 'Nilai Cashback',
+		fieldLabel: 'Cashback',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4057,7 +4057,7 @@ Ext.override(Ext.form.Field, {
 	jrawat_voucher_cashback2Field= new Ext.form.NumberField({
 		id: 'jrawat_voucher_cashback2Field',
 		enableKeyEvents: true,
-		fieldLabel: 'Nilai Cashback',
+		fieldLabel: 'Cashback',
 		allowBlank: true,
 		anchor: '95%',
 		maskRe: /([0-9]+)$/
@@ -4085,14 +4085,14 @@ Ext.override(Ext.form.Field, {
 	// START Field Voucher-3
 	jrawat_voucher_no3Field= new Ext.form.TextField({
 		id: 'jrawat_voucher_no3Field',
-		fieldLabel: 'Nomor Voucher',
+		fieldLabel: 'Voucher No',
 		maxLength: 10,
 		anchor: '95%'
 	});
 
 	jrawat_voucher_cashback3_cfField= new Ext.form.TextField({
 		id: 'jrawat_voucher_cashback3_cfField',
-		fieldLabel: 'Nilai Cashback',
+		fieldLabel: 'Cashback',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4102,7 +4102,7 @@ Ext.override(Ext.form.Field, {
 	jrawat_voucher_cashback3Field= new Ext.form.NumberField({
 		id: 'jrawat_voucher_cashback3Field',
 		enableKeyEvents: true,
-		fieldLabel: 'Nilai Cashback',
+		fieldLabel: 'Cashback',
 		allowBlank: true,
 		anchor: '95%',
 		maskRe: /([0-9]+)$/
@@ -4130,7 +4130,7 @@ Ext.override(Ext.form.Field, {
 	// START Field Card
 	jrawat_card_namaField= new Ext.form.ComboBox({
 		id: 'jrawat_card_namaField',
-		fieldLabel: 'Jenis Kartu',
+		fieldLabel: 'Card Type',
 		store:new Ext.data.SimpleStore({
 			fields:['jrawat_card_value', 'jrawat_card_display'],
 			data:[['VISA','VISA'],['MASTERCARD','MASTERCARD'],['Debit','Debit']]
@@ -4162,14 +4162,14 @@ Ext.override(Ext.form.Field, {
 
 	jrawat_card_noField= new Ext.form.TextField({
 		id: 'jrawat_card_noField',
-		fieldLabel: 'No Kartu',
+		fieldLabel: 'Card No',
 		maxLength: 30,
 		anchor: '95%'
 	});
 	
 	jrawat_card_nilai_cfField= new Ext.form.TextField({
 		id: 'jrawat_card_nilai_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4188,7 +4188,7 @@ Ext.override(Ext.form.Field, {
 	});
 	jrawat_card_nilaiField= new Ext.form.NumberField({
 		id: 'jrawat_card_nilaiField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowBlank: true,
 		anchor: '95%',
 		enableKeyEvents: true,
@@ -4216,7 +4216,7 @@ Ext.override(Ext.form.Field, {
 	// START Field Card-2
 	jrawat_card_nama2Field= new Ext.form.ComboBox({
 		id: 'jrawat_card_nama2Field',
-		fieldLabel: 'Jenis Kartu',
+		fieldLabel: 'Card type',
 		store:new Ext.data.SimpleStore({
 			fields:['jrawat_card_value', 'jrawat_card_display'],
 			data:[['VISA','VISA'],['MASTERCARD','MASTERCARD'],['Debit','Debit']]
@@ -4248,14 +4248,14 @@ Ext.override(Ext.form.Field, {
 
 	jrawat_card_no2Field= new Ext.form.TextField({
 		id: 'jrawat_card_no2Field',
-		fieldLabel: 'No Kartu',
+		fieldLabel: 'Card No',
 		maxLength: 30,
 		anchor: '95%'
 	});
 	
 	jrawat_card_nilai2_cfField= new Ext.form.TextField({
 		id: 'jrawat_card_nilai2_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4273,7 +4273,7 @@ Ext.override(Ext.form.Field, {
 	});
 	jrawat_card_nilai2Field= new Ext.form.NumberField({
 		id: 'jrawat_card_nilai2Field',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowBlank: true,
 		anchor: '95%',
 		enableKeyEvents: true,
@@ -4301,7 +4301,7 @@ Ext.override(Ext.form.Field, {
 	// START Field Card-3
 	jrawat_card_nama3Field= new Ext.form.ComboBox({
 		id: 'jrawat_card_nama3Field',
-		fieldLabel: 'Jenis Kartu',
+		fieldLabel: 'Card type',
 		store:new Ext.data.SimpleStore({
 			fields:['jrawat_card_value', 'jrawat_card_display'],
 			data:[['VISA','VISA'],['MASTERCARD','MASTERCARD'],['Debit','Debit']]
@@ -4333,14 +4333,14 @@ Ext.override(Ext.form.Field, {
 
 	jrawat_card_no3Field= new Ext.form.TextField({
 		id: 'jrawat_card_no3Field',
-		fieldLabel: 'No Kartu',
+		fieldLabel: 'Card No',
 		maxLength: 30,
 		anchor: '95%'
 	});
 	
 	jrawat_card_nilai3_cfField= new Ext.form.TextField({
 		id: 'jrawat_card_nilai3_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4358,7 +4358,7 @@ Ext.override(Ext.form.Field, {
 	});
 	jrawat_card_nilai3Field= new Ext.form.NumberField({
 		id: 'jrawat_card_nilai3Field',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowBlank: true,
 		anchor: '95%',
 		enableKeyEvents: true,
@@ -4387,14 +4387,14 @@ Ext.override(Ext.form.Field, {
 	// StART Field Cek
 	jrawat_cek_namaField= new Ext.form.TextField({
 		id: 'jrawat_cek_namaField',
-		fieldLabel: 'Atas Nama',
+		fieldLabel: 'A/n',
 		allowBlank: true,
 		anchor: '95%'
 	});
 	
 	jrawat_cek_noField= new Ext.form.TextField({
 		id: 'jrawat_cek_noField',
-		fieldLabel: 'No Cek/Giro',
+		fieldLabel: 'Cheque/Giro No',
 		allowBlank: true,
 		anchor: '95%',
 		maxLength: 50
@@ -4423,7 +4423,7 @@ Ext.override(Ext.form.Field, {
 	
 	jrawat_cek_nilai_cfField= new Ext.form.TextField({
 		id: 'jrawat_cek_nilai_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4442,7 +4442,7 @@ Ext.override(Ext.form.Field, {
 	});
 	jrawat_cek_nilaiField= new Ext.form.NumberField({
 		id: 'jrawat_cek_nilaiField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowBlank: true,
 		anchor: '95%',
 		enableKeyEvents: true,
@@ -4469,14 +4469,14 @@ Ext.override(Ext.form.Field, {
 	// StART Field Cek-2
 	jrawat_cek_nama2Field= new Ext.form.TextField({
 		id: 'jrawat_cek_nama2Field',
-		fieldLabel: 'Atas Nama',
+		fieldLabel: 'A/n',
 		allowBlank: true,
 		anchor: '95%'
 	});
 	
 	jrawat_cek_no2Field= new Ext.form.TextField({
 		id: 'jrawat_cek_no2Field',
-		fieldLabel: 'No Cek/Giro',
+		fieldLabel: 'Cheque/Giro No',
 		allowBlank: true,
 		anchor: '95%',
 		maxLength: 50
@@ -4505,7 +4505,7 @@ Ext.override(Ext.form.Field, {
 	
 	jrawat_cek_nilai2_cfField= new Ext.form.TextField({
 		id: 'jrawat_cek_nilai2_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4524,7 +4524,7 @@ Ext.override(Ext.form.Field, {
 	});
 	jrawat_cek_nilai2Field= new Ext.form.NumberField({
 		id: 'jrawat_cek_nilai2Field',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowBlank: true,
 		anchor: '95%',
 		enableKeyEvents: true,
@@ -4532,7 +4532,7 @@ Ext.override(Ext.form.Field, {
 	});
 	
 	master_jual_rawat_cek2Group = new Ext.form.FieldSet({
-		title: 'Check/Giro',
+		title: 'Cheque/Giro',
 		collapsible: true,
 		layout:'column',
 		anchor: '95%',
@@ -4551,14 +4551,14 @@ Ext.override(Ext.form.Field, {
 	// StART Field Cek-3
 	jrawat_cek_nama3Field= new Ext.form.TextField({
 		id: 'jrawat_cek_nama3Field',
-		fieldLabel: 'Atas Nama',
+		fieldLabel: 'A/n',
 		allowBlank: true,
 		anchor: '95%'
 	});
 	
 	jrawat_cek_no3Field= new Ext.form.TextField({
 		id: 'jrawat_cek_no3Field',
-		fieldLabel: 'No Cek/Giro',
+		fieldLabel: 'Cheque/Giro No',
 		allowBlank: true,
 		anchor: '95%',
 		maxLength: 50
@@ -4587,7 +4587,7 @@ Ext.override(Ext.form.Field, {
 	
 	jrawat_cek_nilai3_cfField= new Ext.form.TextField({
 		id: 'jrawat_cek_nilai3_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4606,7 +4606,7 @@ Ext.override(Ext.form.Field, {
 	});
 	jrawat_cek_nilai3Field= new Ext.form.NumberField({
 		id: 'jrawat_cek_nilai3Field',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowBlank: true,
 		anchor: '95%',
 		enableKeyEvents: true,
@@ -4614,7 +4614,7 @@ Ext.override(Ext.form.Field, {
 	});
 	
 	master_jual_rawat_cek3Group = new Ext.form.FieldSet({
-		title: 'Check/Giro',
+		title: 'Cheque/Giro',
 		collapsible: true,
 		layout:'column',
 		anchor: '95%',
@@ -4648,7 +4648,7 @@ Ext.override(Ext.form.Field, {
 
 	jrawat_transfer_namaField= new Ext.form.TextField({
 		id: 'jrawat_transfer_namaField',
-		fieldLabel: 'Atas Nama',
+		fieldLabel: 'A/n',
 		allowBlank: true,
 		anchor: '95%',
 		maxLength: 50
@@ -4656,7 +4656,7 @@ Ext.override(Ext.form.Field, {
 	
 	jrawat_transfer_nilai_cfField= new Ext.form.TextField({
 		id: 'jrawat_transfer_nilai_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4676,7 +4676,7 @@ Ext.override(Ext.form.Field, {
 	jrawat_transfer_nilaiField= new Ext.form.NumberField({
 		id: 'jrawat_transfer_nilaiField',
 		enableKeyEvents: true,
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowBlank: true,
 		anchor: '95%',
 		maskRe: /([0-9]+)$/
@@ -4715,7 +4715,7 @@ Ext.override(Ext.form.Field, {
 
 	jrawat_transfer_nama2Field= new Ext.form.TextField({
 		id: 'jrawat_transfer_nama2Field',
-		fieldLabel: 'Atas Nama',
+		fieldLabel: 'A/n',
 		allowBlank: true,
 		anchor: '95%',
 		maxLength: 50
@@ -4723,7 +4723,7 @@ Ext.override(Ext.form.Field, {
 	
 	jrawat_transfer_nilai2_cfField= new Ext.form.TextField({
 		id: 'jrawat_transfer_nilai2_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4742,7 +4742,7 @@ Ext.override(Ext.form.Field, {
 	});
 	jrawat_transfer_nilai2Field= new Ext.form.NumberField({
 		id: 'jrawat_transfer_nilai2Field',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		enableKeyEvents: true,
 		allowBlank: true,
 		anchor: '95%',
@@ -4782,7 +4782,7 @@ Ext.override(Ext.form.Field, {
 
 	jrawat_transfer_nama3Field= new Ext.form.TextField({
 		id: 'jrawat_transfer_nama3Field',
-		fieldLabel: 'Atas Nama',
+		fieldLabel: 'A/n',
 		allowBlank: true,
 		anchor: '95%',
 		maxLength: 50
@@ -4790,7 +4790,7 @@ Ext.override(Ext.form.Field, {
 	
 	jrawat_transfer_nilai3_cfField= new Ext.form.TextField({
 		id: 'jrawat_transfer_nilai3_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4809,7 +4809,7 @@ Ext.override(Ext.form.Field, {
 	});
 	jrawat_transfer_nilai3Field= new Ext.form.NumberField({
 		id: 'jrawat_transfer_nilai3Field',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		enableKeyEvents: true,
 		allowBlank: true,
 		anchor: '95%',
@@ -4837,7 +4837,7 @@ Ext.override(Ext.form.Field, {
 	//START Field Tunai-1
 	jrawat_tunai_nilai_cfField= new Ext.form.TextField({
 		id: 'jrawat_tunai_nilai_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4857,14 +4857,14 @@ Ext.override(Ext.form.Field, {
 	jrawat_tunai_nilaiField= new Ext.form.NumberField({
 		id: 'jrawat_tunai_nilaiField',
 		enableKeyEvents: true,
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowBlank: true,
 		anchor: '95%',
 		maskRe: /([0-9]+)$/
 	});
 
 	master_jual_rawat_tunaiGroup = new Ext.form.FieldSet({
-		title: 'Tunai',
+		title: 'Cash',
 		autoHeight: true,
 		collapsible: true,
 		layout:'column',
@@ -4885,7 +4885,7 @@ Ext.override(Ext.form.Field, {
 	//START Field Tunai-2
 	jrawat_tunai_nilai2_cfField= new Ext.form.TextField({
 		id: 'jrawat_tunai_nilai2_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4905,14 +4905,14 @@ Ext.override(Ext.form.Field, {
 	jrawat_tunai_nilai2Field= new Ext.form.NumberField({
 		id: 'jrawat_tunai_nilai2Field',
 		enableKeyEvents: true,
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowBlank: true,
 		anchor: '95%',
 		maskRe: /([0-9]+)$/
 	});
 
 	master_jual_rawat_tunai2Group = new Ext.form.FieldSet({
-		title: 'Tunai',
+		title: 'Cash',
 		autoHeight: true,
 		collapsible: true,
 		layout:'column',
@@ -4933,7 +4933,7 @@ Ext.override(Ext.form.Field, {
 	//START Field Tunai-3
 	jrawat_tunai_nilai3_cfField= new Ext.form.TextField({
 		id: 'jrawat_tunai_nilai3_cfField',
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowNegatife : false,
 		enableKeyEvents: true,
 		itemCls: 'rmoney',
@@ -4953,7 +4953,7 @@ Ext.override(Ext.form.Field, {
 	jrawat_tunai_nilai3Field= new Ext.form.NumberField({
 		id: 'jrawat_tunai_nilai3Field',
 		enableKeyEvents: true,
-		fieldLabel: 'Jumlah (Rp)',
+		fieldLabel: 'Nominal (Rp)',
 		allowBlank: true,
 		anchor: '95%',
 		maskRe: /([0-9]+)$/
@@ -4981,7 +4981,7 @@ Ext.override(Ext.form.Field, {
 	//START Field Kwitansi-1
 	jrawat_kwitansi_namaField= new Ext.form.TextField({
 		id: 'jrawat_kwitansi_namaField',
-		fieldLabel: 'Atas Nama',
+		fieldLabel: 'A/n',
 		allowBlank: true,
 		disabled:true,
 		anchor: '95%'
@@ -5080,7 +5080,7 @@ Ext.override(Ext.form.Field, {
 	//START Field Kwitansi-2
 	jrawat_kwitansi_nama2Field= new Ext.form.TextField({
 		id: 'jrawat_kwitansi_nama2Field',
-		fieldLabel: 'Atas Nama',
+		fieldLabel: 'A/n',
 		allowBlank: true,
 		disabled:true,
 		anchor: '95%'
@@ -5168,7 +5168,7 @@ Ext.override(Ext.form.Field, {
 	//START Field Kwitansi-3
 	jrawat_kwitansi_nama3Field= new Ext.form.TextField({
 		id: 'jrawat_kwitansi_nama3Field',
-		fieldLabel: 'Atas Nama',
+		fieldLabel: 'A/n',
 		allowBlank: true,
 		disabled:true,
 		anchor: '95%'
@@ -5325,7 +5325,7 @@ Ext.override(Ext.form.Field, {
 		itemCls : 'rmoney2'
 	});
 	jrawat_TotalBayarLabel= new Ext.form.DisplayField({
-		fieldLabel : '<span style="font-weight:bold"><font size=4>Total Bayar (Rp)</span>',
+		fieldLabel : '<span style="font-weight:bold"><font size=4>Total Payment (Rp)</span>',
 		itemCls : 'rmoney2'
 	});
 	jrawat_HutangLabel= new Ext.form.DisplayField({
@@ -5470,25 +5470,27 @@ Ext.override(Ext.form.Field, {
 		width: 380,
 		defaults:{bodyStyle:'padding:10px'},
 		items:[{
-                title:'Cara Bayar 1',
+                title:'Payment Method 1',
                 layout:'form',
 				frame: true,
                 defaults: {width: 165},
                 defaultType: 'textfield',
                 items: [jrawat_caraField,master_jual_rawat_tunaiGroup,master_jual_rawat_cardGroup,master_jual_rawat_cekGroup,master_jual_rawat_kwitansiGroup,master_jual_rawat_transferGroup,master_jual_rawat_voucherGroup]
             },{
-                title:'Cara Bayar 2',
+                title:'Payment Method 2',
                 layout:'form',
 				frame: true,
                 defaults: {width: 165},
                 defaultType: 'textfield',
+				labelWidth: 120,
                 items: [jrawat_cara2Field, master_jual_rawat_tunai2Group, master_jual_rawat_kwitansi2Group ,master_jual_rawat_card2Group, master_jual_rawat_cek2Group, master_jual_rawat_transfer2Group, master_jual_rawat_voucher2Group]
             },{
-                title:'Cara Bayar 3',
+                title:'Payment Method 3',
                 layout:'form',
 				frame: true,
                 defaults: {width: 165},
                 defaultType: 'textfield',
+				labelWidth: 120,
                 items: [jrawat_cara3Field, master_jual_rawat_tunai3Group, master_jual_rawat_kwitansi3Group, master_jual_rawat_card3Group, master_jual_rawat_cek3Group, master_jual_rawat_transfer3Group, master_jual_rawat_voucher3Group]
             }]
 	});
@@ -5575,7 +5577,7 @@ Ext.override(Ext.form.Field, {
 			
 			{
 				columnWidth:0.4,
-				labelWidth: 180,
+				labelWidth: 200,
 				layout: 'form',
     			labelPad: 0,
 				baseCls: 'x-plain',
@@ -5851,7 +5853,7 @@ Ext.override(Ext.form.Field, {
 	var drawat_jenis_diskonField= new Ext.form.ComboBox({
 		store:new Ext.data.SimpleStore({
 			fields:['diskon_jenis_value'],
-			data:[['Tanpa Diskon'],['Umum'],['Member'],['Ultah'],['Card'],['Kolega'],['Owner'],/*,['Grooming'],['Staff'],*/['Promo']]
+			data:[['Tanpa Diskon'],/*['Umum'],*/['Member'],/*['Ultah'],*/['Card'],['Kolega'],['Owner']/*,['Grooming'],['Staff'],['Promo']*/]
 		}),
 		mode: 'local',
 		displayField: 'diskon_jenis_value',
@@ -7447,7 +7449,7 @@ Ext.override(Ext.form.Field, {
 	/* Identify  jrawat_nobukti Search Field */
 	jrawat_nobuktiSearchField= new Ext.form.TextField({
 		id: 'jrawat_nobuktiSearchField',
-		fieldLabel: 'No Faktur',
+		fieldLabel: 'Invoice No',
 		maxLength: 30,
 		anchor: '95%'
 	});
@@ -7498,10 +7500,10 @@ Ext.override(Ext.form.Field, {
 	/* Identify  jrawat_cara Search Field */
 	jrawat_caraSearchField= new Ext.form.ComboBox({
 		id: 'jrawat_caraSearchField',
-		fieldLabel: 'Cara Bayar',
+		fieldLabel: 'Payment Method',
 		store:new Ext.data.SimpleStore({
 			fields:['value', 'jrawat_cara'],
-			data:[['tunai','Tunai'],['kwitansi','Kwitansi'],['card','Kartu Kredit'],['cek/giro','Cek/Giro'],['transfer','Transfer'],['voucher','Voucher']]
+			data:[['tunai','Cash'],['kwitansi','Kuitansi'],['card','Credit card'],['cek/giro','Cheque/Giro'],['transfer','Transfer'],['voucher','Voucher']]
 		}),
 		mode: 'local',
 		displayField: 'jrawat_cara',
