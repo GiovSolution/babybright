@@ -45,7 +45,6 @@ var anamnesa_searchForm;
 var lr_searchWindow;
 var anamnesa_SelectedRow;
 var anamnesa_ContextMenu;
-var anamnesa_ContextMenu;
 //for detail data
 var anamnesa_problem_DataStor;
 var lr_detailListEditorGrid;
@@ -1300,9 +1299,9 @@ Ext.onReady(function(){
 	//declaration of detail list editor grid
 	lr_planListEditorGrid =  new Ext.grid.EditorGridPanel({
 		id: 'lr_planListEditorGrid',
-		el: 'fp_lesson_plan',
+		el: 'fp_lesson_report_plan',
 		title: 'Lesson Plan',
-		height: 250,
+		height: 80,
 		width: 690,
 		autoScroll: true,
 		store: lr_detail_DataStore, // DataStore
@@ -1315,22 +1314,6 @@ Ext.onReady(function(){
 		clicksToEdit:2, // 2xClick untuk bisa meng-Edit inLine Data
 		selModel: new Ext.grid.RowSelectionModel({singleSelect:false}),
 		viewConfig: { forceFit:true}
-		<?php if(eregi('U|C',$this->m_security->get_access_group_by_kode('MENU_LESSONREPORT'))){ ?>
-		,
-		tbar: [
-		{
-			text: 'Add',
-			tooltip: 'Add new detail record',
-			iconCls:'icon-adds',    				// this is defined in our styles.css
-			handler: lr_detail_add
-		}, '-',{
-			text: 'Delete',
-			tooltip: 'Delete detail selected record',
-			iconCls:'icon-delete',
-			handler: lr_detail_confirm_delete
-		}
-		]
-		<?php } ?>
 	});
 	//eof
 	
@@ -1947,7 +1930,7 @@ Ext.onReady(function(){
 	<div class="col">
         <div id="fp_lesson_report"></div>
          <div id="fp_lesson_report_problem"></div>
-         <div id="fp_lesson_plan"></div>
+         <div id="fp_lesson_report_plan"></div>
 		<div id="elwindow_lesson_report_create"></div>
         <div id="elwindow_lesson_report_search"></div>
     </div>
