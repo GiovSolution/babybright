@@ -305,9 +305,18 @@ Ext.onReady(function(){
 		class_teacher2Field.setValue(class_ListEditorGrid.getSelectionModel().getSelected().get('class_teacher2'));
 		class_teacher3Field.setValue(class_ListEditorGrid.getSelectionModel().getSelected().get('class_teacher3'));
 
-		cbo_class_student_DataStore.load();
+		cbo_class_student_DataStore.load({
+			params: {
+					query: class_ListEditorGrid.getSelectionModel().getSelected().get('class_id'),
+					aktif: 'yesno'
+				},
+				callback: function(opts, success, response){
+						detail_class_student_DataStore.load({params : {master_id : get_pk_id() }});
+				}
 
-		detail_class_student_DataStore.load({params : {master_id : get_pk_id() }});
+			});
+
+	
 
 	}
 	/* End setValue to EDIT*/
