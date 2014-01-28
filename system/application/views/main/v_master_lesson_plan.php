@@ -65,6 +65,7 @@ var lesplan_idField;
 var lesplan_codeField;
 var lesplan_themeField;
 var lesplan_sub_themeField;
+var lesplan_character_impField;
 var lesplan_custField;
 var lesplan_tanggalField;
 var lesplan_classField;
@@ -199,6 +200,7 @@ Ext.onReady(function(){
 		var lesplan_teacher_create=null; 
 		var lesplan_theme_create=null; 
 		var lesplan_sub_theme_create=null; 
+		var lesplan_character_imp_create=null; 
 		var lesplan_week_create=null; 
 		var lesplan_day_create=null; 
 		var lesplan_agreement_create=null; 
@@ -209,6 +211,7 @@ Ext.onReady(function(){
 		if(lesplan_teacherField.getValue()!== ""){lesplan_teacher_create = lesplan_teacherField.getValue();} 
 		if(lesplan_themeField.getValue()!== ""){lesplan_theme_create = lesplan_themeField.getValue();} 
 		if(lesplan_sub_themeField.getValue()!== ""){lesplan_sub_theme_create = lesplan_sub_themeField.getValue();} 
+		if(lesplan_character_impField.getValue()!== ""){lesplan_character_imp_create = lesplan_character_impField.getValue();} 
 		if(lesplan_weekField.getValue()!== null){lesplan_week_create = lesplan_weekField.getValue();} 
 		if(lesplan_dayField.getValue()!== null){lesplan_day_create = lesplan_dayField.getValue();} 
 		if(lesplan_agreementField.getValue()!== null){lesplan_agreement_create = lesplan_agreementField.getValue();} 
@@ -259,6 +262,7 @@ Ext.onReady(function(){
 				lesplan_teacher			: lesplan_teacher_create, 		
 				lesplan_theme			: lesplan_theme_create, 		
 				lesplan_sub_theme		: lesplan_sub_theme_create, 		
+				lesplan_character_imp	: lesplan_character_imp_create, 		
 				lesplan_week			: lesplan_week_create, 
 				lesplan_day				: lesplan_day_create,
 				lesplan_agreement		: lesplan_agreement_create,
@@ -333,7 +337,9 @@ Ext.onReady(function(){
 		lesplan_themeField.reset();
 		lesplan_themeField.setValue(null);
 		lesplan_sub_themeField.reset();
-		lesplan_sub_themeField.setValue(null);
+		lesplan_sub_themeField.setValue(null);		
+		lesplan_character_impField.reset();
+		lesplan_character_impField.setValue(null);
 		lesplan_custField.reset();
 		lesplan_custField.setValue(null);
 		lesplan_tanggalField.reset();
@@ -372,6 +378,7 @@ Ext.onReady(function(){
 		lesplan_classField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_class_name'));
 		lesplan_teacherField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_teacher_name'));
 		lesplan_sub_themeField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_sub_theme'));
+		lesplan_character_impField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_character_imp'));
 		lesplan_tanggalField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_tanggal'));
 		lesplan_weekField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_week'));
 		lesplan_dayField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_day'));
@@ -508,6 +515,7 @@ Ext.onReady(function(){
 			{name: 'lesplan_teacher', type: 'int', mapping: 'lesplan_teacher'}, 
 			{name: 'lesplan_teacher_name', type: 'string', mapping: 'karyawan_nama'}, 
 			{name: 'lesplan_sub_theme', type: 'string', mapping: 'lesplan_sub_theme'}, 
+			{name: 'lesplan_character_imp', type: 'string', mapping: 'lesplan_character_imp'}, 
 			{name: 'lesplan_tanggal', type: 'date', dateFormat: 'Y-m-d', mapping: 'lesplan_tanggal'}, 
 			{name: 'lesplan_week', type: 'int', mapping: 'lesplan_week'}, 
 			{name: 'lesplan_day', type: 'int', mapping: 'lesplan_day'}, 
@@ -550,6 +558,12 @@ Ext.onReady(function(){
 		{
 			header: 'Sub Theme',
 			dataIndex: 'lesplan_sub_theme',
+			width: 150,
+			sortable: true
+		}, 
+		{
+			header: 'Character Imp',
+			dataIndex: 'lesplan_character_imp',
 			width: 150,
 			sortable: true
 		}, 
@@ -1018,6 +1032,12 @@ Ext.onReady(function(){
 		readOnly: false,
 		anchor: '90%'
 	});
+	lesplan_character_impField= new Ext.form.TextField({
+		id: 'lesplan_character_impField',
+		fieldLabel: 'Character Imp',
+		readOnly: false,
+		anchor: '90%'
+	});
 	/* Identify  anam_pengobatan Field */
 	lesplan_languageField= new Ext.form.TextArea({
 		id: 'lesplan_languageField',
@@ -1154,7 +1174,7 @@ Ext.onReady(function(){
 				columnWidth:0.5,
 				layout: 'form',
 				border:false,
-				items: [lesplan_teacherField, lesplan_weekField , lesplan_dayField , lesplan_agreementField] 
+				items: [lesplan_character_impField, lesplan_teacherField, lesplan_weekField , lesplan_dayField , lesplan_agreementField] 
 			}
 			
 			]

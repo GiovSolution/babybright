@@ -9,9 +9,75 @@ class M_lesson_report extends Model{
 			parent::Model();
 		}
 		
+		function get_student_by_class_id($orderid){
+			$sql="select cust_id from class_students
+					left join class on class.class_id = class_students.dclass_master
+					left join customer on customer.cust_id = class_students.dclass_student
+				 	where class.class_id = '".$orderid."'";
+					
+			$query = $this->db->query($sql);
+			$nbrows = $query->num_rows();
+			if($nbrows>0){
+				foreach($query->result() as $row){
+					$arr[] = $row;
+				}
+				$jsonresult = json_encode($arr);
+				return '({"total":"'.$nbrows.'","results":'.$jsonresult.'})';
+			} else {
+				return '({"total":"0", "results":""})';
+			}
+		}
+
+		function get_student_all_list($query,$start,$end){
+
+			$sql="SELECT * from class_students
+					left join customer on customer.cust_id = class_students.dclass_student";
+			/*
+			if($query!==""){
+				$sql.=(eregi("WHERE",$sql)?" AND ":" WHERE ")." produk_nama like '%".$query."%' OR produk_kode like '%".$query."%'";
+			}
+			*/
+
+			$result = $this->db->query($sql);
+			$nbrows = $result->num_rows();
+
+			if($nbrows>0){
+				foreach($result->result() as $row){
+					$arr[] = $row;
+				}
+				$jsonresult = json_encode($arr);
+				return '({"total":"'.$nbrows.'","results":'.$jsonresult.'})';
+			} else {
+				return '({"total":"0", "results":""})';
+			}
+		}
+
+		function get_student_order_list($class_id,$query,$start,$end){
+			$sql="SELECT cust_id, cust_nama FROM customer";
+			if($class_id<>"")
+				$sql.=" WHERE cust_id IN(SELECT dclass_student FROM class_students WHERE dclass_master='".$class_id."')";
+
+			if($query!==""){
+				$sql.=(eregi("WHERE",$sql)?" AND ":" WHERE ")." cust_nama like '%".$query."%'";
+			}
+
+			$result = $this->db->query($sql);
+			$nbrows = $result->num_rows();
+
+			if($nbrows>0){
+				foreach($result->result() as $row){
+					$arr[] = $row;
+				}
+				$jsonresult = json_encode($arr);
+				return '({"total":"'.$nbrows.'","results":'.$jsonresult.'})';
+			} else {
+				return '({"total":"0", "results":""})';
+			}
+		}
+
 		//function for detail
 		//get record list
-		function detail_anamnesa_problem_list($master_id,$query,$start,$end) {
+		function detail_lr($master_id,$query,$start,$end) {
 			$query = "SELECT * FROM detail_lr where dlr_master='".$master_id."'";
 			$result = $this->db->query($query);
 			$nbrows = $result->num_rows();
@@ -71,6 +137,62 @@ class M_lesson_report extends Model{
 			return '({"total":"0", "results":""})';
 		}
 	}
+
+	
+	//get master id, note : not done yet
+	function get_master_id() {
+		$query = "SELECT max(lr_id) AS master_id FROM lesson_report";
+		$result = $this->db->query($query);
+		if($result->num_rows()){
+			$data=$result->row();
+			$master_id=$data->master_id;
+			return $master_id;
+		}else{
+			return '0';
+		}
+	}
+	//eof
+
+	function get_class($filter,$start,$end){
+			/*
+			$query = "SELECT karyawan_id,karyawan_nama,jabatan_nama FROM karyawan,jabatan 
+						WHERE karyawan_jabatan=jabatan_id AND 
+						(jabatan_nama='Dokter' OR jabatan_nama='Suster' OR jabatan_nama='Therapist') ";
+			*/
+			if($_SESSION[SESSION_GROUPID]=='1'){
+				$query = "SELECT * FROM class";
+			} else {
+				$query_karyawan = "SELECT * FROM users WHERE users.user_name = '".$_SESSION[SESSION_USERID]."'";
+				$query_sql_karyawan= $this->db->query($query_karyawan);
+				$data_sql_karyawan= $query_sql_karyawan->row();
+				$user_karyawan= $data_sql_karyawan->user_karyawan;
+				
+				// $query = "SELECT * FROM master_lesson_plan WHERE master_lesson_plan.lesplan_teacher='".$user_karyawan."'";
+				$query = "SELECT * FROM class WHERE class.class_teacher1='".$user_karyawan."' 
+				OR class.class_teacher2='".$user_karyawan."' OR class.class_teacher3 = '".$user_karyawan."'";
+			}
+			
+			if ($filter<>""){
+				$query .=eregi("WHERE",$query)? " AND ":" WHERE ";
+				$query .= " (class_name LIKE '%".addslashes($filter)."%'";
+			}
+			
+			$result = $this->db->query($query);
+			$nbrows = $result->num_rows();
+			$limit = $query." LIMIT ".$start.",".$end;			
+			$result = $this->db->query($limit);  
+			
+			if($nbrows>0){
+				foreach($result->result() as $row){
+					$arr[] = $row;
+				}
+				$jsonresult = json_encode($arr);
+				return '({"total":"'.$nbrows.'","results":'.$jsonresult.'})';
+			} else {
+				return '({"total":"0", "results":""})';
+			}
+			
+		}
 		
 		function get_petugas($filter,$start,$end){
 			/*
@@ -161,8 +283,8 @@ class M_lesson_report extends Model{
 		function lr_list($filter,$start,$end){
 		if($_SESSION[SESSION_GROUPID]=='1'){
 			$query = "SELECT * FROM lesson_report
-						LEFT JOIN master_lesson_plan ON master_lesson_plan.lesplan_id = lesson_report.lr_lesson_plan
-						LEFT JOIN customer ON customer.cust_id = lesson_report.lr_customer";
+						LEFT JOIN class ON class.class_id = lesson_report.lr_class
+						ORDER BY lr_id DESC";
 		} else {
 			$query_karyawan = "SELECT * FROM users WHERE users.user_name = '".$_SESSION[SESSION_USERID]."'";
 			$query_sql_karyawan= $this->db->query($query_karyawan);
@@ -170,9 +292,7 @@ class M_lesson_report extends Model{
 			$user_karyawan= $data_sql_karyawan->user_karyawan;
 			
 			$query = "SELECT * FROM lesson_report
-						LEFT JOIN master_lesson_plan ON master_lesson_plan.lesplan_id = lesson_report.lr_lesson_plan
-						LEFT JOIN customer ON customer.cust_id = lesson_report.lr_customer
-						WHERE master_lesson_plan.lesplan_teacher='".$user_karyawan."'";
+						LEFT JOIN class ON class.class_id = lesson_report.lr_class";
 		}
 			
 			// For simple search
@@ -202,20 +322,37 @@ class M_lesson_report extends Model{
 		
 		
 		// Function untuk insert Detail Lesson Report
-		function detail_lesson_plan_insert($temp_lr_id, $array_dlr_id, $array_dlr_subject, $array_dlr_report){
-	
+		function detail_lesson_plan_insert(
+					$temp_lr_id, 
+					$array_dlr_id, 
+					$array_dlr_student, 
+					$array_dlr_report_ld,
+					$array_dlr_report_sed,
+					$array_dlr_report_pd,
+					$array_dlr_report_cb,
+					$array_dlr_report_m
+					){
 		$datetime_now = date('Y-m-d H:i:s');
 
-		// if($dfcl_master=="" || $dfcl_master==NULL || $dfcl_master==0){
-		// 		$dfcl_master=$this->get_master_id();
-		// }
+		if($temp_lr_id=="" || $temp_lr_id==NULL || $temp_lr_id==0){
+		 		$temp_lr_id=$this->get_master_id();
+		}
+
+		// delete detail nya dahulu
+		$sql = "DELETE FROM detail_lr WHERE dlr_master='".$temp_lr_id."'";
+		$rs = $this->db->query($sql);
 		
-		$size_array = sizeof($array_dlr_subject) - 1;
-			for($i = 0; $i < sizeof($array_dlr_subject); $i++){
+		$size_array = sizeof($array_dlr_student) - 1;
+			for($i = 0; $i < sizeof($array_dlr_student); $i++){
+				echo $array_dlr_id[$i];
 				$dlr_id = $array_dlr_id[$i];
 				$dlr_master = $temp_lr_id;
-				$dlr_subject = $array_dlr_subject[$i];
-				$dlr_report = $array_dlr_report[$i];
+				$dlr_student = $array_dlr_student[$i];
+				$dlr_report_ld = $array_dlr_report_ld[$i];
+				$dlr_report_sed = $array_dlr_report_sed[$i];
+				$dlr_report_pd = $array_dlr_report_pd[$i];
+				$dlr_report_cb = $array_dlr_report_cb[$i];
+				$dlr_report_m = $array_dlr_report_m[$i];
 
 	
 				$sql = "SELECT dlr_id
@@ -227,8 +364,12 @@ class M_lesson_report extends Model{
 				// jika datanya sudah ada maka update saja
 					$dtu_detail_lesson_report = array(
 						"dlr_master"=>$dlr_master,
-						"dlr_subject"=>$dlr_subject,
-						"dlr_report"=>$dlr_report,
+						"dlr_student"=>$dlr_student,
+						"dlr_report_ld"=>$dlr_report_ld,
+						"dlr_report_sed"=>$dlr_report_sed,
+						"dlr_report_pd"=>$dlr_report_pd,
+						"dlr_report_cb"=>$dlr_report_cb,
+						"dlr_report_m"=>$dlr_report_m,
 						"dlr_creator"=>$_SESSION[SESSION_USERID],
 						"dlr_date_update"=>$datetime_now
 					);
@@ -237,8 +378,12 @@ class M_lesson_report extends Model{
 				}else {
 					$data = array(
 						"dlr_master"=>$dlr_master,
-						"dlr_subject"=>$dlr_subject,
-						"dlr_report"=>$dlr_report,
+						"dlr_student"=>$dlr_student,
+						"dlr_report_ld"=>$dlr_report_ld,
+						"dlr_report_sed"=>$dlr_report_sed,
+						"dlr_report_pd"=>$dlr_report_pd,
+						"dlr_report_cb"=>$dlr_report_cb,
+						"dlr_report_m"=>$dlr_report_m,
 						"dlr_update"=>$_SESSION[SESSION_USERID],
 						"dlr_date_create"=>$datetime_now
 					);
@@ -250,32 +395,58 @@ class M_lesson_report extends Model{
 	}
 		
 		//function for update record
-		function lr_update($lr_id ,$lr_cust ,$lr_tanggal ,$lr_week ,$lr_day ,$lr_language ,$lr_special ,$lr_bible,
-													$array_dlr_id, $array_dlr_subject, $array_dlr_report){
+		function lr_update($lr_id ,$lr_class ,
+					$lr_tanggal ,
+					$lr_period ,
+					$lr_theme ,
+					$lr_subtheme ,
+					$lr_ld ,
+					$lr_sed ,
+					$lr_pd ,
+					$lr_cb ,
+					$lr_m,
+					$array_dlr_id, 
+					$array_dlr_student, 
+					$array_dlr_report_ld,
+					$array_dlr_report_sed,
+					$array_dlr_report_pd,
+					$array_dlr_report_cb,
+					$array_dlr_report_m
+					){
 			$data = array(
 				"lr_id"=>$lr_id, 
-				//"lr_customer"=>$lr_cust, 
-				//"lr_code"=>$lr_code, 
 				"lr_tanggal"=>$lr_tanggal, 
-				"lr_week"=>$lr_week, 
-				"lr_day"=>$lr_day, 
-				"lr_language"=>$lr_language, 
-				"lr_special"=>$lr_special, 
-				"lr_bible"=>$lr_bible, 
+				//"lr_class"=>$lr_class, 
+				"lr_period"=>$lr_period, 
+				"lr_theme"=>$lr_theme, 
+				"lr_subtheme"=>$lr_subtheme, 
+				"lr_ld"=>$lr_ld, 
+				"lr_sed"=>$lr_sed, 
+				"lr_pd"=>$lr_pd, 
+				"lr_cb"=>$lr_cb, 
+				"lr_m"=>$lr_m, 
 				"lr_update"=>$_SESSION[SESSION_USERID],			
 				"lr_date_update"=>date('Y-m-d H:i:s')
 			);
 			// Cara untuk mengakali combobox yang pny datastore sendiri
-			$sql="SELECT cust_id FROM customer WHERE cust_id='".$lr_cust."'";
+			$sql="SELECT class_id FROM class WHERE class_id='".$lr_class."'";
 				$result=$this->db->query($sql);
 				if($result->num_rows())
-					$data["lr_customer"]=$lr_cust;
+					$data["lr_class"]=$lr_class;
 					
 			$this->db->where('lr_id', $lr_id);
 			$this->db->update('lesson_report', $data);
 			
 			$temp_lr_id = $lr_id;
-			$temp_dlr_ins = $this->detail_lesson_plan_insert($temp_lr_id, $array_dlr_id, $array_dlr_subject, $array_dlr_report);
+			$temp_dlr_ins = $this->detail_lesson_plan_insert(
+						$temp_lr_id, 
+						$array_dlr_id, 
+						$array_dlr_student, 
+						$array_dlr_report_ld,
+						$array_dlr_report_sed,
+						$array_dlr_report_pd,
+						$array_dlr_report_cb,
+						$array_dlr_report_m);
 			
 			if($this->db->affected_rows()){
 				$sql="UPDATE lesson_report set lr_revised=(lr_revised+1) WHERE lr_id='".$lr_id."'";
@@ -286,22 +457,42 @@ class M_lesson_report extends Model{
 		}
 		
 		//function for create new record
-		function lr_create($lr_cust, $lr_lesson_plan, $lr_tanggal ,$lr_week ,$lr_day ,$lr_language ,$lr_special ,$lr_bible, 
-												$array_dlr_id, $array_dlr_subject, $array_dlr_report){
+		function lr_create($lr_class, $lr_lesson_plan, 
+						$lr_tanggal ,
+						$lr_period ,
+						$lr_theme ,
+						$lr_subtheme ,
+						$lr_ld ,
+						$lr_sed ,
+						$lr_pd ,
+						$lr_cb ,
+						$lr_m, 
+						$array_dlr_id, 
+						$array_dlr_student, 
+						$array_dlr_report_ld,
+						$array_dlr_report_sed,
+						$array_dlr_report_pd,
+						$array_dlr_report_cb,
+						$array_dlr_report_m
+						){
 			$lr_tanggal_pattern=strtotime($lr_tanggal);
 			$pattern="LR/".date("ym",$lr_tanggal_pattern)."-";
 			$lr_code=$this->m_public_function->get_kode_1('lesson_report','lr_code',$pattern,12);
 			
 			$data = array(
-				"lr_customer"=>$lr_cust, 
-				"lr_lesson_plan"=>$lr_lesson_plan, 
+				//"lr_customer"=>$lr_cust, 
+				//"lr_lesson_plan"=>$lr_lesson_plan, 
 				"lr_code"=>$lr_code, 
 				"lr_tanggal"=>$lr_tanggal, 
-				"lr_week"=>$lr_week, 
-				"lr_day"=>$lr_day, 
-				"lr_language"=>$lr_language, 
-				"lr_special"=>$lr_special, 
-				"lr_bible"=>$lr_bible, 
+				"lr_class"=>$lr_class, 
+				"lr_period"=>$lr_period, 
+				"lr_theme"=>$lr_theme, 
+				"lr_subtheme"=>$lr_subtheme, 
+				"lr_ld"=>$lr_ld, 
+				"lr_sed"=>$lr_sed, 
+				"lr_pd"=>$lr_pd, 
+				"lr_cb"=>$lr_cb, 
+				"lr_m"=>$lr_m, 
 				"lr_creator"=>$_SESSION[SESSION_USERID],	
 				"lr_date_create"=>date('Y-m-d H:i:s'),	
 				"lr_revised"=>'0'
@@ -309,13 +500,49 @@ class M_lesson_report extends Model{
 			$this->db->insert('lesson_report', $data);
 			
 			$temp_lr_id = $this->db->insert_id();
-			$temp_dlr_ins = $this->detail_lesson_plan_insert($temp_lr_id, $array_dlr_id, $array_dlr_subject, $array_dlr_report);
+			$temp_dlr_ins = $this->detail_lesson_plan_insert(
+						$temp_lr_id, 
+						$array_dlr_id, 
+						$array_dlr_student, 
+						$array_dlr_report_ld,
+						$array_dlr_report_sed,
+						$array_dlr_report_pd,
+						$array_dlr_report_cb,
+						$array_dlr_report_m
+						);
 			
 			if($this->db->affected_rows())
 				return $this->db->insert_id();
 			else
 				return '0';
 		}
+
+		function print_paper($jproduk_id){
+		$sql="SELECT
+			lr_period,
+			lr_theme,
+			lr_subtheme,
+			lr_ld,
+			lr_sed,	
+			lr_pd,
+			lr_cb,
+			lr_m,
+			class_name,
+			dlr_report_ld,
+			dlr_report_sed,
+			dlr_report_pd,
+			dlr_report_cb,
+			dlr_report_m,
+			cust_nama
+		FROM detail_lr
+		LEFT JOIN customer ON customer.cust_id = detail_lr.dlr_student
+		LEFT JOIN lesson_report ON lesson_report.lr_id = detail_lr.dlr_master
+		LEFT JOIN class ON class.class_id = lesson_report.lr_class
+		WHERE lr_id='$jproduk_id' 
+		ORDER BY cust_nama ASC";
+		$result = $this->db->query($sql);
+		return $result;
+	}
 		
 		//fcuntion for delete record
 		function anamnesa_delete($pkid){
