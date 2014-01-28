@@ -58,7 +58,7 @@ class M_lesson_report extends Model{
 				$sql.=" WHERE cust_id IN(SELECT dclass_student FROM class_students WHERE dclass_master='".$class_id."')";
 
 			if($query!==""){
-				$sql.=(eregi("WHERE",$sql)?" AND ":" WHERE ")." produk_nama like '%".$query."%' OR produk_kode like '%".$query."%'";
+				$sql.=(eregi("WHERE",$sql)?" AND ":" WHERE ")." cust_nama like '%".$query."%'";
 			}
 
 			$result = $this->db->query($sql);
@@ -337,6 +337,10 @@ class M_lesson_report extends Model{
 		if($temp_lr_id=="" || $temp_lr_id==NULL || $temp_lr_id==0){
 		 		$temp_lr_id=$this->get_master_id();
 		}
+
+		// delete detail nya dahulu
+		$sql = "DELETE FROM detail_lr WHERE dlr_master='".$temp_lr_id."'";
+		$rs = $this->db->query($sql);
 		
 		$size_array = sizeof($array_dlr_student) - 1;
 			for($i = 0; $i < sizeof($array_dlr_student); $i++){
@@ -412,7 +416,7 @@ class M_lesson_report extends Model{
 			$data = array(
 				"lr_id"=>$lr_id, 
 				"lr_tanggal"=>$lr_tanggal, 
-				"lr_class"=>$lr_class, 
+				//"lr_class"=>$lr_class, 
 				"lr_period"=>$lr_period, 
 				"lr_theme"=>$lr_theme, 
 				"lr_subtheme"=>$lr_subtheme, 
@@ -425,12 +429,10 @@ class M_lesson_report extends Model{
 				"lr_date_update"=>date('Y-m-d H:i:s')
 			);
 			// Cara untuk mengakali combobox yang pny datastore sendiri
-			/*
-			$sql="SELECT cust_id FROM customer WHERE cust_id='".$lr_cust."'";
+			$sql="SELECT class_id FROM class WHERE class_id='".$lr_class."'";
 				$result=$this->db->query($sql);
 				if($result->num_rows())
-					$data["lr_customer"]=$lr_cust;
-			*/
+					$data["lr_class"]=$lr_class;
 					
 			$this->db->where('lr_id', $lr_id);
 			$this->db->update('lesson_report', $data);
