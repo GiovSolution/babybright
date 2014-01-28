@@ -1,5 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
+<<<<<<< HEAD
 ERROR - 2014-01-21 12:56:37 --> The session cookie data did not match what was expected. This could be a possible hacking attempt.
 ERROR - 2014-01-21 13:26:06 --> Severity: Notice  --> Undefined index:  lesplan_character_imp /Applications/MAMP/htdocs/babybright/system/application/controllers/c_master_lesson_plan.php 153
 ERROR - 2014-01-21 13:26:06 --> Query error: 
@@ -40,3 +41,9 @@ ERROR - 2014-01-21 17:02:53 --> Query error:
 ERROR - 2014-01-21 17:03:57 --> Severity: Notice  --> Undefined index:  lr_cust /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 184
 ERROR - 2014-01-21 17:03:57 --> Severity: Notice  --> Undefined index:  lr_lesson_plan /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 185
 ERROR - 2014-01-21 17:03:58 --> Query error: 
+=======
+ERROR - 2014-01-21 10:56:08 --> The session cookie data did not match what was expected. This could be a possible hacking attempt.
+ERROR - 2014-01-21 10:56:09 --> Severity: Notice  --> Undefined index:  mode_edit /Applications/MAMP/htdocs/babybright/system/application/controllers/c_appointment.php 198
+ERROR - 2014-01-21 10:56:24 --> Severity: Notice  --> Undefined index:  mode_edit /Applications/MAMP/htdocs/babybright/system/application/controllers/c_appointment.php 198
+ERROR - 2014-01-21 10:56:24 --> Severity: Notice  --> Undefined index:  mode_edit /Applications/MAMP/htdocs/babybright/system/application/controllers/c_appointment.php 198
+>>>>>>> 19896ca64cc494b3a0968f167f1473db8fe1298e
