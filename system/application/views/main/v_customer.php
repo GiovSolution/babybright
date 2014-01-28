@@ -4483,36 +4483,30 @@ Ext.onReady(function(){
 	});
 	
 	cust_imageField = new Ext.form.FileUploadField({
-        // renderTo: 'fi-basic',
         fieldLabel : 'Upload Image',
         width: 250,
         enableKeyEvents: true
     });
 
-
     cust_image_pengantar1Field = new Ext.form.FileUploadField({
-        // renderTo: 'fi-basic',
         fieldLabel : 'Upload Image',
         width: 250,
         enableKeyEvents: true
     });
 
     cust_image_pengantar2Field = new Ext.form.FileUploadField({
-        // renderTo: 'fi-basic',
         fieldLabel : 'Upload Image',
         width: 250,
         enableKeyEvents: true
     });
 
     cust_image_pengantar3Field = new Ext.form.FileUploadField({
-        // renderTo: 'fi-basic',
         fieldLabel : 'Upload Image',
         width: 250,
         enableKeyEvents: true
     });
 
     cust_image_pengantar4Field = new Ext.form.FileUploadField({
-        // renderTo: 'fi-basic',
         fieldLabel : 'Upload Image',
         width: 250,
         enableKeyEvents: true
