@@ -63,8 +63,17 @@ var pageS=15;
 /* declare variable here for Field*/
 var lr_idField;
 var lr_codeField;
+var lr_periodField;
+var lr_themeField;
+var lr_subthemeField;
+var lr_ldField;
+var lr_sedField;
+var lr_pdField;
+var lr_cbField;
+var lr_mField;
 var lr_custField;
 var lr_tanggalField;
+var lr_classField;
 var lr_lesson_planField;
 var lr_languageField;
 var lr_special_actField;
@@ -189,68 +198,118 @@ Ext.onReady(function(){
 	
 		if(is_lr_form_valid()){	
 		var lr_id_create_pk=null; 
-		var lr_cust_create=null; 
 		var lr_tanggal_create_date=""; 
-		var lr_lesson_plan_create=null; 
-		var lr_week_create=null; 
-		var lr_day_create=null; 
-		var lr_language_create=null; 
-		var lr_special_create=null; 
-		var lr_bible_create=null; 
+		var lr_class_create=null; 
+		var lr_period_create=null; 
+		var lr_theme_create=null; 
+		var lr_subtheme_create=null; 
+		var lr_ld_create=null; 
+		var lr_sed_create=null; 
+		var lr_pd_create=null; 
+		var lr_cb_create=null; 
+		var lr_m_create=null; 
 
 		if(lr_idField.getValue()!== null){lr_id_create_pk = lr_idField.getValue();}else{lr_id_create_pk=get_pk_id();} 
-		if(lr_custField.getValue()!== null){lr_cust_create = lr_custField.getValue();} 
 		if(lr_tanggalField.getValue()!== ""){lr_tanggal_create_date = lr_tanggalField.getValue().format('Y-m-d');} 
-		if(lr_lesson_planField.getValue()!== null){lr_lesson_plan_create = lr_lesson_planField.getValue();} 
-		if(lr_languageField.getValue()!== null){lr_language_create = lr_languageField.getValue();} 
-		if(lr_special_actField.getValue()!== null){lr_special_create = lr_special_actField.getValue();} 
-		if(lr_bibleField.getValue()!== null){lr_bible_create = lr_bibleField.getValue();} 
-		if(lr_weekField.getValue()!== null){lr_week_create = lr_weekField.getValue();} 
-		if(lr_dayField.getValue()!== null){lr_day_create = lr_dayField.getValue();} 
+		if(lr_classField.getValue()!== null){lr_class_create = lr_classField.getValue();} 
+		if(lr_periodField.getValue()!== null){lr_period_create = lr_periodField.getValue();} 
+		if(lr_themeField.getValue()!== null){lr_theme_create = lr_themeField.getValue();} 
+		if(lr_subthemeField.getValue()!== null){lr_subtheme_create = lr_subthemeField.getValue();} 
+		if(lr_ldField.getValue()!== null){lr_ld_create = lr_ldField.getValue();} 
+		if(lr_sedField.getValue()!== null){lr_sed_create = lr_sedField.getValue();} 
+		if(lr_pdField.getValue()!== null){lr_pd_create = lr_pdField.getValue();} 
+		if(lr_cbField.getValue()!== null){lr_cb_create = lr_cbField.getValue();} 
+		if(lr_mField.getValue()!== null){lr_m_create = lr_mField.getValue();} 
 		
 		// penambahan detail lesson report
 		var dlr_id = [];
         var dlr_master = [];
-        var dlr_subject = [];
-        var dlr_report = [];
+        var dlr_student = [];
+        var dlr_report_ld = [];
+        var dlr_report_sed = [];
+        var dlr_report_pd = [];
+        var dlr_report_cb = [];
+        var dlr_report_m = [];
 		
         if(lr_detail_DataStore.getCount()>0){
             for(i=0; i<lr_detail_DataStore.getCount();i++){
-                if(lr_detail_DataStore.getAt(i).data.dlr_subject!==""
-				   && lr_detail_DataStore.getAt(i).data.dlr_report!==""){
+                if(lr_detail_DataStore.getAt(i).data.dlr_student!==""){
                     
+                	if(lr_detail_DataStore.getAt(i).data.dlr_id==undefined ||
+					   lr_detail_DataStore.getAt(i).data.dlr_id==''){
+						lr_detail_DataStore.getAt(i).data.dlr_id=0;
+					}
+
+					if(lr_detail_DataStore.getAt(i).data.dlr_report_ld==undefined ||
+					   lr_detail_DataStore.getAt(i).data.dlr_report_ld==''){
+						lr_detail_DataStore.getAt(i).data.dlr_report_ld='';
+					}
+
+					if(lr_detail_DataStore.getAt(i).data.dlr_report_sed==undefined ||
+					   lr_detail_DataStore.getAt(i).data.dlr_report_sed==''){
+						lr_detail_DataStore.getAt(i).data.dlr_report_sed='';
+					}
+
+					if(lr_detail_DataStore.getAt(i).data.dlr_report_pd==undefined ||
+					   lr_detail_DataStore.getAt(i).data.dlr_report_pd==''){
+						lr_detail_DataStore.getAt(i).data.dlr_report_pd='';
+					}
+
+					if(lr_detail_DataStore.getAt(i).data.dlr_report_cb==undefined ||
+					   lr_detail_DataStore.getAt(i).data.dlr_report_cb==''){
+						lr_detail_DataStore.getAt(i).data.dlr_report_cb='';
+					}
+
+					if(lr_detail_DataStore.getAt(i).data.dlr_report_m==undefined ||
+					   lr_detail_DataStore.getAt(i).data.dlr_report_m==''){
+						lr_detail_DataStore.getAt(i).data.dlr_report_m='';
+					}
+
                   	dlr_id.push(lr_detail_DataStore.getAt(i).data.dlr_id);
-                   	dlr_subject.push(lr_detail_DataStore.getAt(i).data.dlr_subject);
-					dlr_report.push(lr_detail_DataStore.getAt(i).data.dlr_report);
+                   	dlr_student.push(lr_detail_DataStore.getAt(i).data.dlr_student);
+					dlr_report_ld.push(lr_detail_DataStore.getAt(i).data.dlr_report_ld);
+					dlr_report_sed.push(lr_detail_DataStore.getAt(i).data.dlr_report_sed);
+					dlr_report_pd.push(lr_detail_DataStore.getAt(i).data.dlr_report_pd);
+					dlr_report_cb.push(lr_detail_DataStore.getAt(i).data.dlr_report_cb);
+					dlr_report_m.push(lr_detail_DataStore.getAt(i).data.dlr_report_m);
                 }
             }
 			
 			var encoded_array_dlr_id = Ext.encode(dlr_id);
-			var encoded_array_dlr_subject = Ext.encode(dlr_subject);
-			var encoded_array_dlr_report = Ext.encode(dlr_report);
+			var encoded_array_dlr_student = Ext.encode(dlr_student);
+			var encoded_array_dlr_report_ld = Ext.encode(dlr_report_ld);
+			var encoded_array_dlr_report_sed = Ext.encode(dlr_report_sed);
+			var encoded_array_dlr_report_pd = Ext.encode(dlr_report_pd);
+			var encoded_array_dlr_report_cb = Ext.encode(dlr_report_cb);
+			var encoded_array_dlr_report_m = Ext.encode(dlr_report_m);
 			
 		}
-
 		Ext.Ajax.request({  
 			waitMsg: 'Please wait...',
 			url: 'index.php?c=c_lesson_report&m=get_action',
 			params: {
 				task: post2db,
 				lr_id				: lr_id_create_pk, 
-				lr_cust				: lr_cust_create, 
 				lr_tanggal			: lr_tanggal_create_date,			
-				lr_lesson_plan		: lr_lesson_plan_create, 		
-				lr_week				: lr_week_create, 
-				lr_day				: lr_day_create, 
-				lr_language			: lr_language_create, 
-				lr_special			: lr_special_create, 
-				lr_bible			: lr_bible_create, 
+				lr_class			: lr_class_create, 
+				lr_period			: lr_period_create, 
+				lr_theme			: lr_theme_create, 
+				lr_subtheme			: lr_subtheme_create, 
+				lr_ld				: lr_ld_create, 
+				lr_sed				: lr_sed_create, 
+				lr_pd				: lr_pd_create, 
+				lr_cb				: lr_cb_create, 
+				lr_m				: lr_m_create, 
 
 				// detail lr 
-				dlr_id				: encoded_array_dlr_id, 
-				dlr_master			: eval(get_pk_id()),
-				dlr_subject			: encoded_array_dlr_subject, 
-				dlr_report			: encoded_array_dlr_report
+				dlr_id					: encoded_array_dlr_id, 
+				dlr_master				: eval(get_pk_id()),
+				dlr_student				: encoded_array_dlr_student, 
+				dlr_report_ld			: encoded_array_dlr_report_ld,
+				dlr_report_sed			: encoded_array_dlr_report_sed,
+				dlr_report_pd			: encoded_array_dlr_report_pd,
+				dlr_report_cb			: encoded_array_dlr_report_cb,
+				dlr_report_m			: encoded_array_dlr_report_m
 			}, 
 			success: function(response){             
 								
@@ -309,36 +368,28 @@ Ext.onReady(function(){
 		lr_idField.setValue(null);
 		lr_codeField.reset();
 		lr_codeField.setValue(null);
-		lr_custField.reset();
-		lr_custField.setValue(null);
+		lr_classField.reset();
+		lr_classField.setValue(null);
+		lr_periodField.reset();
+		lr_periodField.setValue(null);
+		lr_themeField.reset();
+		lr_themeField.setValue(null);
+		lr_subthemeField.reset();
+		lr_subthemeField.setValue(null);
+		lr_ldField.reset();
+		lr_ldField.setValue(null);
+		lr_sedField.reset();
+		lr_sedField.setValue(null);
+		lr_pdField.reset();
+		lr_pdField.setValue(null);
+		lr_cbField.reset();
+		lr_cbField.setValue(null);
+		lr_mField.reset();
+		lr_mField.setValue(null);
 		lr_tanggalField.reset();
 		lr_tanggalField.setValue(null);
-		lr_lesson_planField.reset();
-		lr_lesson_planField.setValue(null);
-		lr_languageField.reset();
-		lr_languageField.setValue(null);
-		lr_special_actField.reset();
-		lr_special_actField.setValue(null);
-		lr_bibleField.reset();
-		lr_bibleField.setValue(null);
-		anam_alergiField.reset();
-		anam_alergiField.setValue(null);
-		anam_obatalergiField.reset();
-		anam_obatalergiField.setValue(null);
-		anam_efekobatalergiField.reset();
-		anam_efekobatalergiField.setValue(null);
-		lr_weekField.reset();
-		lr_weekField.setValue(null);
-		lr_dayField.reset();
-		lr_dayField.setValue(null);
-		lr_language_subjectField.reset();
-		lr_language_subjectField.setValue(null);
-		lr_special_subjectField.reset();
-		lr_special_subjectField.setValue(null);
-		lr_bible_subjectField.reset();
-		lr_bible_subjectField.setValue(null);
-		anam_harapanField.reset();
-		anam_harapanField.setValue(null);
+		cbo_student_detailDataStore.setBaseParam('task','list');
+		cbo_student_detailDataStore.load();
 		lr_detail_DataStore.load({params : {master_id : -1}});
 	}
  	/* End of Function */
@@ -347,27 +398,17 @@ Ext.onReady(function(){
 	function lr_set_form(){
 		lr_idField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_id'));
 		lr_codeField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_code'));
-		lr_custField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_cust_nama'));
+		lr_classField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_class_name'));
+		lr_periodField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_period'));
+		lr_themeField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_theme'));
+		lr_subthemeField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_subtheme'));
+		lr_ldField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_ld'));
+		lr_sedField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_sed'));
+		lr_pdField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_pd'));
+		lr_cbField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_cb'));
+		lr_mField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_m'));
 		lr_tanggalField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_tanggal'));
-		lr_lesson_planField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_lesson_plan_code'));
-		lr_languageField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_language'));
-		lr_special_actField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_special'));
-		lr_bibleField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_bible'));
-		/*
-		anam_alergiField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('anam_alergi'));
-		anam_obatalergiField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('anam_obatalergi'));
-		anam_efekobatalergiField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('anam_efekobatalergi'));
-		*/
-		lr_weekField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_week'));
-		lr_dayField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_day'));
-		/*
-		lr_language_subjectField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_language'));
-		lr_special_subjectField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_special'));
-		lr_bible_subjectField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('lr_bible'));
-		
-		anam_harapanField.setValue(lr_ListEditorGrid.getSelectionModel().getSelected().get('anam_harapan'));
-		lr_detail_DataStore.load({params : {master_id : get_pk_id() }});
-		*/
+		cbo_student_detailDataStore.load();
 		lr_detail_DataStore.load({params : {master_id : get_pk_id() }});
 	}
 	/* End setValue to EDIT*/
@@ -494,16 +535,17 @@ Ext.onReady(function(){
 		},[
 			{name: 'lr_id', type: 'int', mapping: 'lr_id'}, 
 			{name: 'lr_code', type: 'string', mapping: 'lr_code'}, 
-			{name: 'lr_cust', type: 'int', mapping: 'lr_customer'}, 
-			{name: 'lr_cust_nama', type: 'string', mapping: 'cust_nama'}, 
-			{name: 'lr_lesson_plan', type: 'int', mapping: 'lr_lesson_plan'}, 
-			{name: 'lr_lesson_plan_code', type: 'string', mapping: 'lesplan_code'}, 
+			{name: 'lr_class', type: 'int', mapping: 'lr_class'}, 
+			{name: 'lr_class_name', type: 'string', mapping: 'class_name'}, 
 			{name: 'lr_tanggal', type: 'date', dateFormat: 'Y-m-d', mapping: 'lr_tanggal'}, 
-			{name: 'lr_language', type: 'string', mapping: 'lr_language'}, 
-			{name: 'lr_special', type: 'string', mapping: 'lr_special'}, 
-			{name: 'lr_bible', type: 'string', mapping: 'lr_bible'}, 
-			{name: 'lr_week', type: 'int', mapping: 'lr_week'}, 
-			{name: 'lr_day', type: 'int', mapping: 'lr_day'}, 
+			{name: 'lr_period', type: 'string', mapping: 'lr_period'}, 
+			{name: 'lr_theme', type: 'string', mapping: 'lr_theme'}, 
+			{name: 'lr_subtheme', type: 'string', mapping: 'lr_subtheme'}, 
+			{name: 'lr_ld', type: 'string', mapping: 'lr_ld'}, 
+			{name: 'lr_sed', type: 'string', mapping: 'lr_sed'}, 
+			{name: 'lr_pd', type: 'string', mapping: 'lr_pd'}, 
+			{name: 'lr_cb', type: 'string', mapping: 'lr_cb'}, 
+			{name: 'lr_m', type: 'string', mapping: 'lr_m'}, 
 			{name: 'lr_creator', type: 'string', mapping: 'lr_creator'}, 
 			{name: 'lr_date_create', type: 'date', dateFormat: 'Y-m-d', mapping: 'lr_date_create'}, 
 			{name: 'lr_update', type: 'string', mapping: 'lr_update'}, 
@@ -534,12 +576,37 @@ Ext.onReady(function(){
 			sortable: true
 		},
 		{
+			header: 'Class',
+			dataIndex: 'lr_class_name',
+			width: 150,
+			sortable: true
+		},
+		{
+			header: 'Period',
+			dataIndex: 'lr_period',
+			width: 150,
+			sortable: true
+		},
+		{
+			header: 'Theme',
+			dataIndex: 'lr_theme',
+			width: 150,
+			sortable: true
+		},{
+			header: 'Sub Theme',
+			dataIndex: 'lr_subtheme',
+			width: 150,
+			sortable: true
+		},
+		/*
+		{
 			header: 'Customer',
 			dataIndex: 'lr_cust_nama',
 			width: 150,
 			sortable: true,
 			readOnly: true
-		}, 
+		},
+		*/ 
 		{
 			header: 'Tanggal',
 			dataIndex: 'lr_tanggal',
@@ -553,7 +620,8 @@ Ext.onReady(function(){
 				format: 'Y-m-d'
 			})
 			<?php } ?>
-		}, 
+		},
+		/* 
 		{
 			header: 'Lesson Plan',
 			dataIndex: 'lr_lesson_plan_code',
@@ -561,6 +629,7 @@ Ext.onReady(function(){
 			sortable: true,
 			readOnly: true
 		},
+
 		{
 			header: 'Week',
 			dataIndex: 'lr_week',
@@ -573,6 +642,8 @@ Ext.onReady(function(){
 			width: 150,
 			sortable: true
 		},
+		*/
+
 		/*
 		{
 			header: 'Language',
@@ -859,6 +930,53 @@ Ext.onReady(function(){
 		]),
 		sortInfo:{field: 'lesplan_code', direction: "ASC"}
 	});
+
+	class_DataStore = new Ext.data.Store({
+		id: 'class_DataStore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'index.php?c=c_lesson_report&m=get_class',
+			method: 'POST'
+		}),
+		baseParams:{task: "LIST", start:0, limit: pageS},
+		reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			id: 'class_id'
+		},[
+			{name: 'class_id', type: 'int', mapping: 'class_id'},
+			{name: 'class_name', type: 'string', mapping: 'class_name'},
+			{name: 'class_teacher1', type: 'string', mapping: 'class_teacher1'},
+			{name: 'class_teacher2', type: 'string', mapping: 'class_teacher2'},
+			{name: 'class_teacher3', type: 'string', mapping: 'class_teacher3'},
+			{name: 'class_time_start', type: 'string', mapping: 'class_time_start'},
+			{name: 'class_time_end', type: 'string', mapping: 'class_time_end'},
+		]),
+		sortInfo:{field: 'class_name', direction: "ASC"}
+	});
+
+	var lr_classstudent_detail_DataStore=new Ext.data.Store({
+		id: 'lr_classstudent_detail_DataStore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'index.php?c=c_lesson_report&m=get_student_by_class_id',
+			method: 'POST'
+		}),
+		baseParams:{task: "LIST"},
+		reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			id: 'dlr_student'
+		},[
+			{name: 'dlr_student', type: 'int', mapping: 'cust_id'},
+		]),
+		sortInfo:{field: 'dlr_student', direction: "ASC"}
+	});
+
+	var class_tpl = new Ext.XTemplate(
+        '<tpl for="."><div class="search-item">',
+            '<span><b>{class_name}</b><br /></span>',
+            'Time Start : {class_time_start}',' | Time End : {class_time_end}',
+        '</div></tpl>'
+    );
 	
 	var customer_tpl = new Ext.XTemplate(
         '<tpl for="."><div class="search-item">',
@@ -918,6 +1036,28 @@ Ext.onReady(function(){
 	});
 	
 	// eof load subject
+
+	/* Identify lr_classField Field */
+	lr_classField= new Ext.form.ComboBox({
+		id: 'lr_classField',
+		fieldLabel: 'Class',
+		store: class_DataStore,
+		mode: 'remote',
+		displayField:'class_name',
+		valueField: 'class_id',
+        typeAhead: false,
+        loadingText: 'Searching...',
+        lesplan_pageSize:10,
+        hideTrigger:false,
+        tpl: class_tpl,
+        //applyTo: 'search',
+        itemSelector: 'div.search-item',
+		triggerAction: 'all',
+		lazyRender:true,
+		listClass: 'x-combo-list-small',
+		anchor: '95%',
+		allowBlank: false
+	});
 	
 	/* Identify  lr_id Field */
 	lr_idField= new Ext.form.NumberField({
@@ -990,6 +1130,60 @@ Ext.onReady(function(){
 		fieldLabel: 'LR Code',
 		readOnly: true,
 		emptyText: '(Auto)',
+		anchor: '95%'
+	});
+	
+	lr_periodField= new Ext.form.TextField({
+		id: 'lr_periodField',
+		fieldLabel: 'Period',
+		anchor: '95%'
+	});
+
+	lr_themeField= new Ext.form.TextField({
+		id: 'lr_themeField',
+		fieldLabel: 'Theme',
+		anchor: '95%'
+	});
+
+	lr_subthemeField= new Ext.form.TextField({
+		id: 'lr_subthemeField',
+		fieldLabel: 'Sub Theme',
+		anchor: '95%'
+	});
+
+	lr_ldField= new Ext.form.TextArea({
+		id: 'lr_ldField',
+		fieldLabel: 'Language Development',
+		maxLength: 500,
+		height: 40,
+		anchor: '95%'
+	});
+	lr_sedField= new Ext.form.TextArea({
+		id: 'lr_sedField',
+		fieldLabel: 'Social & Emotional Development',
+		maxLength: 500,
+		height: 40,
+		anchor: '95%'
+	});
+	lr_pdField= new Ext.form.TextArea({
+		id: 'lr_pdField',
+		fieldLabel: 'Physical Development',
+		maxLength: 500,
+		height: 40,
+		anchor: '95%'
+	});
+	lr_cbField= new Ext.form.TextArea({
+		id: 'lr_cbField',
+		fieldLabel: 'Bible / Character Building',
+		maxLength: 500,
+		height: 40,
+		anchor: '95%'
+	});
+	lr_mField= new Ext.form.TextArea({
+		id: 'lr_mField',
+		fieldLabel: 'Mandarin',
+		maxLength: 500,
+		height: 40,
 		anchor: '95%'
 	});
 	/* Identify  anam_pengobatan Field */
@@ -1102,18 +1296,29 @@ Ext.onReady(function(){
 				columnWidth:1,
 				layout: 'form',
 				border:false,
-				items: [lr_codeField, lr_tanggalField, lr_lesson_planField, lr_custField, lr_weekField , lr_dayField/*, lr_language_subjectField, lr_languageField , lr_special_subjectField, lr_special_actField , lr_bible_subjectField, lr_bibleField*/] 
-			}/*
-			,{
-				columnWidth:0.5,
-				layout: 'form',
-				border:false,
-				items: [anam_alergiField, anam_obatalergiField, anam_efekobatalergiField, lr_language_subjectField, anam_harapanField,lr_idField] 
+				items: [lr_codeField, lr_tanggalField,lr_periodField,lr_themeField,lr_subthemeField, lr_classField] 
 			}
-			*/
 			]
 	
 	});
+
+	/*Fieldset Master*/
+	/*
+	student_masterGroup = new Ext.form.FieldSet({
+		autoHeight: true,
+		collapsible: false,
+		layout:'column',
+		items:[
+			{
+				columnWidth:0.5,
+				layout: 'form',
+				border:false,
+				items: [lr_codeField, lr_tanggalField] 
+			}
+			]
+	
+	});
+	*/
 	
 		
 	/*Detail Declaration */
@@ -1126,8 +1331,12 @@ Ext.onReady(function(){
 	},[
 		{name: 'dlr_id', type: 'int', mapping: 'dlr_id'}, 
 		{name: 'dlr_master', type: 'int', mapping: 'dlr_master'}, 
-		{name: 'dlr_subject', type: 'string', mapping: 'dlr_subject'}, 
-		{name: 'dlr_report', type: 'string', mapping: 'dlr_report'}
+		{name: 'dlr_student', type: 'int', mapping: 'dlr_student'}, 
+		{name: 'dlr_report_ld', type: 'string', mapping: 'dlr_report_ld'},
+		{name: 'dlr_report_sed', type: 'string', mapping: 'dlr_report_sed'},
+		{name: 'dlr_report_pd', type: 'string', mapping: 'dlr_report_pd'},
+		{name: 'dlr_report_cb', type: 'string', mapping: 'dlr_report_cb'},
+		{name: 'dlr_report_m', type: 'string', mapping: 'dlr_report_m'}
 	]);
 	//eof
 	
@@ -1142,7 +1351,7 @@ Ext.onReady(function(){
 	lr_detail_DataStore = new Ext.data.Store({
 		id: 'lr_detail_DataStore',
 		proxy: new Ext.data.HttpProxy({
-			url: 'index.php?c=c_lesson_report&m=detail_anamnesa_problem_list', 
+			url: 'index.php?c=c_lesson_report&m=detail_lr', 
 			method: 'POST'
 		}),
 		reader: lr_detail_reader,
@@ -1156,48 +1365,103 @@ Ext.onReady(function(){
         saveText: 'Update'
     });
 	//eof
+
+	/*=== cbo_student_detailDataStore ==> mengambil "Detail Produk" dari detailList Modul Order Pembelian ===*/
+	cbo_student_detailDataStore = new Ext.data.Store({
+		id: 'cbo_student_detailDataStore',
+		proxy: new Ext.data.HttpProxy({
+			url: 'index.php?c=c_lesson_report&m=get_student_list',
+			method: 'POST'
+		}),
+		baseParams: {task: 'list', start:0,limit:pageS},
+		reader: new Ext.data.JsonReader({
+			root: 'results',
+			totalProperty: 'total',
+			id: 'student_id'
+		},[
+			{name: 'student_id', type: 'int', mapping: 'cust_id'},
+			{name: 'student_nama', type: 'string', mapping: 'cust_nama'},
+
+		]),
+		sortInfo:{field: 'student_nama', direction: "ASC"}
+	});
+	/*======= END cbo_student_detailDataStore =======*/
+
+	var student_detail_tpl = new Ext.XTemplate(
+        '<tpl for="."><div class="search-item">',
+            '<span><b>{student_nama}</b></span>',
+        '</div></tpl>'
+    );
+
+	var combo_student=new Ext.form.ComboBox({
+			store: cbo_student_detailDataStore,
+			typeAhead: false,
+			mode : 'remote',
+			displayField: 'student_nama',
+			valueField: 'student_id',
+			lazyRender: false,
+			disabled : false,
+			pageSize: pageS,
+			tpl: student_detail_tpl,
+			itemSelector: 'div.search-item',
+			triggerAction: 'all',
+			listClass: 'x-combo-list-small',
+			anchor: '95%'
+	});
 	
 	//declaration of detail coloumn model
 	lr_detail_ColumnModel = new Ext.grid.ColumnModel(
 		[
 		{
-			header: 'Subject',
-			dataIndex: 'dlr_subject',
+			header: 'Student',
+			dataIndex: 'dlr_student',
 			width: 150,
 			sortable: true,
-			editor: combo_subject
-			//renderer: Ext.util.Format.comboRenderer(combo_subject)
-			/*
-			editor: new Ext.form.TextField({
-				allowBlank: false,
-				maxLength: 500
-          	})
-			*/
-		}/*,
+			editor: combo_student,
+			renderer: Ext.util.Format.comboRenderer(combo_student)
+		},
 		{
-			header: 'Lama Problem',
-			dataIndex: 'panam_lamaproblem',
-			width: 150,
+			header: 'Report LD',
+			dataIndex: 'dlr_report_ld',
+			width: 75,
 			sortable: true,
 			editor: new Ext.form.TextField({
-				maxLength: 50
+				maxLength: 500
           	})
 		},
 		{
-			header: 'Aksi Problem',
-			dataIndex: 'panam_aksiproblem',
-			width: 150,
+			header: 'Report SED',
+			dataIndex: 'dlr_report_sed',
+			width: 75,
 			sortable: true,
 			editor: new Ext.form.TextField({
-				maxLength: 250
+				maxLength: 500
           	})
-		}*/,
+		},
 		{
-			header: 'Report',
-			dataIndex: 'dlr_report',
-			width: 150,
+			header: 'Report PD',
+			dataIndex: 'dlr_report_pd',
+			width: 75,
 			sortable: true,
-			editor: new Ext.form.TextArea({
+			editor: new Ext.form.TextField({
+				maxLength: 500
+          	})
+		},
+		{
+			header: 'Report B/CB',
+			dataIndex: 'dlr_report_cb',
+			width: 75,
+			sortable: true,
+			editor: new Ext.form.TextField({
+				maxLength: 500
+          	})
+		},
+		{
+			header: 'Report M',
+			dataIndex: 'dlr_report_m',
+			width: 75,
+			sortable: true,
+			editor: new Ext.form.TextField({
 				maxLength: 500
           	})
 		}]
@@ -1211,7 +1475,7 @@ Ext.onReady(function(){
 	lr_detailListEditorGrid =  new Ext.grid.EditorGridPanel({
 		id: 'lr_detailListEditorGrid',
 		el: 'fp_lesson_report_problem',
-		title: 'Detail Lesson Report',
+		title: 'Student Appraisal',
 		height: 250,
 		width: 690,
 		autoScroll: true,
@@ -1232,6 +1496,7 @@ Ext.onReady(function(){
 			displayInfo: true
 		})
 		*/
+		/*
 		<?php if(eregi('U|C',$this->m_security->get_access_group_by_kode('MENU_LESSONREPORT'))){ ?>
 		,
 		tbar: [
@@ -1248,6 +1513,7 @@ Ext.onReady(function(){
 		}
 		]
 		<?php } ?>
+		*/
 	});
 	//eof
 	
@@ -1255,10 +1521,10 @@ Ext.onReady(function(){
 	//function of detail add
 	function lr_detail_add(){
 		var edit_lr_detail= new lr_detailListEditorGrid.store.recordType({
-			dlr_id				:'',		
-			dlr_master			:'',		
-			dlr_subject			:'',		
-			clr_report			:''		
+			dlr_id				:0,		
+			dlr_master			:0,		
+			dlr_subject			:0,		
+			dlr_report			:''		
 		});
 		editor_lr_detail.stopEditing();
 		lr_detail_DataStore.insert(0, edit_lr_detail);
@@ -1277,17 +1543,47 @@ Ext.onReady(function(){
 	lr_plan_ColumnModel = new Ext.grid.ColumnModel(
 		[
 		{
-			header: 'Subject',
+			header: 'LD',
 			dataIndex: 'dlr_subject',
 			width: 150,
-			sortable: true,
-			editor: combo_subject
+			editable: true,
+			//sortable: true,
+			editor: new Ext.form.TextArea({
+				maxLength: 500
+          	})
 		},
 		{
-			header: 'Report',
+			header: 'SED',
 			dataIndex: 'dlr_report',
 			width: 150,
-			sortable: true,
+			//sortable: true,
+			editor: new Ext.form.TextArea({
+				maxLength: 500
+          	})
+		},
+		{
+			header: 'PD',
+			dataIndex: 'dlr_report',
+			width: 150,
+			//sortable: true,
+			editor: new Ext.form.TextArea({
+				maxLength: 500
+          	})
+		},
+		{
+			header: 'B/CB',
+			dataIndex: 'dlr_report',
+			width: 150,
+			//sortable: true,
+			editor: new Ext.form.TextArea({
+				maxLength: 500
+          	})
+		},
+		{
+			header: 'M',
+			dataIndex: 'dlr_report',
+			width: 150,
+			//sortable: true,
 			editor: new Ext.form.TextArea({
 				maxLength: 500
           	})
@@ -1313,7 +1609,21 @@ Ext.onReady(function(){
 		frame: true,
 		clicksToEdit:2, // 2xClick untuk bisa meng-Edit inLine Data
 		selModel: new Ext.grid.RowSelectionModel({singleSelect:false}),
-		viewConfig: { forceFit:true}
+		viewConfig: { forceFit:true},
+		tbar: [
+		{
+			text: 'Add',
+			tooltip: 'Add new detail record',
+			iconCls:'icon-adds',    				// this is defined in our styles.css
+			handler: lr_detail_add
+		}, '-',{
+			text: 'Delete',
+			tooltip: 'Delete detail selected record',
+			iconCls:'icon-delete',
+			handler: lr_detail_confirm_delete
+		}
+		]
+
 	});
 	//eof
 	
@@ -1321,7 +1631,7 @@ Ext.onReady(function(){
 	function refresh_anamnesa_problem(){
 		lr_detail_DataStore.commitChanges();
 		lr_detailListEditorGrid.getView().refresh();
-		lr_planListEditorGrid.getView().refresh();
+		//lr_planListEditorGrid.getView().refresh();
 	}
 	//eof
 	
@@ -1432,6 +1742,57 @@ Ext.onReady(function(){
 		}  
 	}
 	//eof
+
+	// FUNCTION PRINT
+	function print_only(){
+		cetak_jproduk=1;		
+		var jproduk_id_for_cetak = 0;
+		if(lr_idField.getValue()!== null){
+			jproduk_id_for_cetak = lr_idField.getValue();
+		}
+		if(cetak_jproduk==1){
+			jproduk_cetak_print_only(jproduk_id_for_cetak);
+			cetak_jproduk=0;
+		}
+		
+	}
+
+	function jproduk_cetak_print_only(master_id){ 
+		Ext.Ajax.request({   
+			waitMsg: 'Mohon tunggu...',
+			url: 'index.php?c=c_lesson_report&m=print_only',
+			params: { jproduk_id : master_id}, 
+			success: function(response){              
+				var result=eval(response.responseText);
+				switch(result){
+				case 1:
+					win = window.open('./report_cetak.html','Print Report','height=480,width=1340,resizable=1,scrollbars=0, menubar=0');
+					//jproduk_btn_cancel();
+					break;
+				default:
+					Ext.MessageBox.show({
+						title: 'Warning',
+						msg: 'Unable to print the grid!',
+						buttons: Ext.MessageBox.OK,
+						animEl: 'save',
+						icon: Ext.MessageBox.WARNING
+					});
+					break;
+				}  
+			},
+			failure: function(response){
+				var result=response.responseText;
+				Ext.MessageBox.show({
+				   title: 'Error',
+				   msg: 'Could not connect to the database. retry later.',
+				   buttons: Ext.MessageBox.OK,
+				   animEl: 'database',
+				   icon: Ext.MessageBox.ERROR
+				});		
+			} 	                     
+		});
+	}	
+	// EOF FUNCTION PRINT
 	
 	//event on update of detail data store
 	lr_detail_DataStore.on('update', refresh_anamnesa_problem);
@@ -1442,9 +1803,18 @@ Ext.onReady(function(){
 		bodyStyle:'padding:5px',
 		autoHeight:true,
 		width: 700,        
-		items: [anamnesa_masterGroup,lr_planListEditorGrid,lr_detailListEditorGrid],
+		items: [anamnesa_masterGroup,/*lr_planListEditorGrid,*/lr_ldField, lr_sedField, lr_pdField, lr_cbField, lr_mField,lr_detailListEditorGrid],
 		buttons: [
 			<?php if(eregi('U|C',$this->m_security->get_access_group_by_kode('MENU_LESSONREPORT'))){ ?>
+			{
+				text: 'Print Only',
+				ref: '../PrintOnlyButton',
+				handler: print_only
+			},
+			{
+				xtype:'spacer',
+				width: 350
+			},
 			{
 				text: 'Save and Close',
 				handler: lr_create
@@ -1914,24 +2284,46 @@ Ext.onReady(function(){
 	/*End of Function */
 	
 	// EVENT
-	lr_dayField.on('select', function(){
-			cbo_dlr_subjectDataStore.load({params: {
-				day: lr_dayField.getValue(),
-				week: lr_weekField.getValue(),
-				lesson_plan: lr_lesson_planField.getValue()
+	lr_classField.on("select",function(){
+	//	alert('masuk');
+	
+			var j=class_DataStore.findExact('class_id',lr_classField.getValue());
+		
+			lr_classstudent_detail_DataStore.load({
+				params:{orderid: lr_classField.getValue()},
+				callback: function(r,opt,success){
+					if(success==true){
+						cbo_student_detailDataStore.setBaseParam('task','order');
+						cbo_student_detailDataStore.setBaseParam('class_id',lr_classField.getValue());
+						cbo_student_detailDataStore.load({
+							callback: function(r,opt,success){
+								if(success==true){
+
+									lr_detail_DataStore.removeAll();
+									for(i=0;i<lr_classstudent_detail_DataStore.getCount();i++){
+											var detail_order_record=lr_classstudent_detail_DataStore.getAt(i);
+											lr_detail_DataStore.insert(i,detail_order_record);
+									}
+								}
+								
+							}
+						});
+					}
 				}
 			});
+			lr_detail_DataStore.commitChanges();
+			//detail_terima_beli_total();
+		
+		});
+		
 	});
-	
-});
 	</script>
 <body>
 <div>
 	<div class="col">
         <div id="fp_lesson_report"></div>
          <div id="fp_lesson_report_problem"></div>
-         <div id="fp_lesson_report_plan"></div>
-		<div id="elwindow_lesson_report_create"></div>
+        	<div id="elwindow_lesson_report_create"></div>
         <div id="elwindow_lesson_report_search"></div>
     </div>
 </div>

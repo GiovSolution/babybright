@@ -19,6 +19,31 @@ class C_lesson_report extends Controller {
 		$this->load->helper('asset');
 		$this->load->view('main/v_lesson_report');
 	}
+
+	function get_student_list(){
+		$query = isset($_POST['query']) ? @$_POST['query'] : "";
+		$start = (integer) (isset($_POST['start']) ? @$_POST['start'] : @$_GET['start']);
+		$end = (integer) (isset($_POST['limit']) ? @$_POST['limit'] : @$_GET['limit']);
+		$master_id = (integer) (isset($_POST['master_id']) ? @$_POST['master_id'] : @$_GET['master_id']);
+		$task = isset($_POST['task']) ? @$_POST['task'] : @$_GET['task'];
+		$selected_id = isset($_POST['selected_id']) ? @$_POST['selected_id'] : @$_GET['selected_id'];
+		$class_id = isset($_POST['class_id']) ? @$_POST['class_id'] : @$_GET['class_id'];
+		if($task=='list')
+			$result=$this->m_lesson_report->get_student_all_list($query,$start,$end);
+		elseif($task=='order')
+			$result=$this->m_lesson_report->get_student_order_list($class_id,$query,$start,$end);
+		echo $result;
+	}
+
+
+	function  get_class(){
+		$query = isset($_POST['query']) ? @$_POST['query'] : "";
+		$start = (integer) (isset($_POST['start']) ? @$_POST['start'] : @$_GET['start']);
+		$end = (integer) (isset($_POST['limit']) ? @$_POST['limit'] : @$_GET['limit']);
+		
+		$result=$this->m_lesson_report->get_class($query,$start,$end);
+		echo $result;
+	}
 	
 	function  get_petugas(){
 		$query = isset($_POST['query']) ? @$_POST['query'] : "";
@@ -28,15 +53,21 @@ class C_lesson_report extends Controller {
 		$result=$this->m_lesson_report->get_petugas($query,$start,$end);
 		echo $result;
 	}
+
+	function get_student_by_class_id(){
+		$orderid = isset($_POST['orderid']) ? @$_POST['orderid'] : "";
+		$result=$this->m_lesson_report->get_student_by_class_id($orderid);
+		echo $result;
+	}
 	
 	//for detail action
 	//list detail handler action
-	function  detail_anamnesa_problem_list(){
+	function  detail_lr(){
 		$query = isset($_POST['query']) ? @$_POST['query'] : "";
 		$start = (integer) (isset($_POST['start']) ? @$_POST['start'] : @$_GET['start']);
 		$end = (integer) (isset($_POST['limit']) ? @$_POST['limit'] : @$_GET['limit']);
 		$master_id = (integer) (isset($_POST['master_id']) ? $_POST['master_id'] : $_GET['master_id']);
-		$result=$this->m_lesson_report->detail_anamnesa_problem_list($master_id,$query,$start,$end);
+		$result=$this->m_lesson_report->detail_lr($master_id,$query,$start,$end);
 		echo $result;
 	}
 	//end of handler
@@ -132,37 +163,83 @@ class C_lesson_report extends Controller {
 	function lr_update(){
 		//POST variable here
 		$lr_id=trim(@$_POST["lr_id"]);
-		$lr_cust=trim(@$_POST["lr_cust"]);
+		$lr_class=trim(@$_POST["lr_class"]);
 		$lr_tanggal=trim(@$_POST["lr_tanggal"]);
-		$lr_week=trim(@$_POST["lr_week"]);
-		$lr_week=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_week);
-		$lr_week=str_replace("'", '"',$lr_week);
-		$lr_day=trim(@$_POST["lr_day"]);
-		$lr_day=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_day);
-		$lr_day=str_replace("'", '"',$lr_day);
-		$lr_language=trim(@$_POST["lr_language"]);
-		$lr_language=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_language);
-		$lr_language=str_replace("'", '"',$lr_language);
-		$lr_special=trim(@$_POST["lr_special"]);
-		$lr_special=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_special);
-		$lr_special=str_replace("'", '"',$lr_special);
-		$lr_bible=trim(@$_POST["lr_bible"]);
-		$lr_bible=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_bible);
-		$lr_bible=str_replace("'", '"',$lr_bible);
+
+		$lr_period=trim(@$_POST["lr_period"]);
+		$lr_period=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_period);
+		$lr_period=str_replace("'", '"',$lr_period);
+
+		$lr_theme=trim(@$_POST["lr_theme"]);
+		$lr_theme=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_theme);
+		$lr_theme=str_replace("'", '"',$lr_theme);
+
+		$lr_subtheme=trim(@$_POST["lr_subtheme"]);
+		$lr_subtheme=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_subtheme);
+		$lr_subtheme=str_replace("'", '"',$lr_subtheme);
+
+		$lr_ld=trim(@$_POST["lr_ld"]);
+		$lr_ld=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_ld);
+		$lr_ld=str_replace("'", '"',$lr_ld);
+
+		$lr_sed=trim(@$_POST["lr_sed"]);
+		$lr_sed=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_sed);
+		$lr_sed=str_replace("'", '"',$lr_sed);
+
+		$lr_pd=trim(@$_POST["lr_pd"]);
+		$lr_pd=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_pd);
+		$lr_pd=str_replace("'", '"',$lr_pd);
+
+		$lr_cb=trim(@$_POST["lr_cb"]);
+		$lr_cb=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_cb);
+		$lr_cb=str_replace("'", '"',$lr_cb);
+
+		$lr_m=trim(@$_POST["lr_m"]);
+		$lr_m=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_m);
+		$lr_m=str_replace("'", '"',$lr_m);
 		
 		// detail lr
 		$dlr_id = $_POST['dlr_id'];
 		$array_dlr_id = json_decode(stripslashes($dlr_id));
 		
 		$dlr_master=trim(@$_POST["dlr_master"]);
-		
-		$dlr_subject = $_POST['dlr_subject'];
-		$array_dlr_subject = json_decode(stripslashes($dlr_subject));
-		$dlr_report = $_POST['dlr_report'];
-		$array_dlr_report = json_decode(stripslashes($dlr_report));
 
-		$result = $this->m_lesson_report->lr_update($lr_id ,$lr_cust ,$lr_tanggal ,$lr_week ,$lr_day ,$lr_language ,$lr_special ,$lr_bible,
-													$array_dlr_id, $array_dlr_subject, $array_dlr_report);
+		$dlr_student=trim(@$_POST["dlr_student"]);
+		$array_dlr_student = json_decode(stripslashes($dlr_student));
+		
+		$dlr_report_ld = $_POST['dlr_report_ld'];
+		$array_dlr_report_ld = json_decode(stripslashes($dlr_report_ld));
+
+		$dlr_report_sed = $_POST['dlr_report_sed'];
+		$array_dlr_report_sed = json_decode(stripslashes($dlr_report_sed));
+
+		$dlr_report_pd = $_POST['dlr_report_pd'];
+		$array_dlr_report_pd = json_decode(stripslashes($dlr_report_pd));
+
+		$dlr_report_cb = $_POST['dlr_report_cb'];
+		$array_dlr_report_cb = json_decode(stripslashes($dlr_report_cb));
+
+		$dlr_report_m = $_POST['dlr_report_m'];
+		$array_dlr_report_m = json_decode(stripslashes($dlr_report_m));
+
+		$result = $this->m_lesson_report->lr_update($lr_id ,$lr_class ,
+					$lr_tanggal ,
+					$lr_period ,
+					$lr_theme ,
+					$lr_subtheme ,
+					$lr_ld ,
+					$lr_sed ,
+					$lr_pd ,
+					$lr_cb ,
+					$lr_m,
+					$array_dlr_id, 
+					$array_dlr_student, 
+					$array_dlr_report_ld,
+					$array_dlr_report_sed,
+					$array_dlr_report_pd,
+					$array_dlr_report_cb,
+					$array_dlr_report_m
+					);
 		echo $result;
 	}
 	
@@ -170,39 +247,154 @@ class C_lesson_report extends Controller {
 	function lr_create(){
 		//POST varible here
 		//auto increment, don't accept anything from form values
-		$lr_cust=trim(@$_POST["lr_cust"]);
+		$lr_class=trim(@$_POST["lr_class"]);
 		$lr_lesson_plan=trim(@$_POST["lr_lesson_plan"]);
 		$lr_tanggal=trim(@$_POST["lr_tanggal"]);
-		$lr_week=trim(@$_POST["lr_week"]);
-		$lr_week=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_week);
-		$lr_week=str_replace("'", '"',$lr_week);
-		$lr_day=trim(@$_POST["lr_day"]);
-		$lr_day=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_day);
-		$lr_day=str_replace("'", '"',$lr_day);
-		$lr_language=trim(@$_POST["lr_language"]);
-		$lr_language=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_language);
-		$lr_language=str_replace("'", '"',$lr_language);
-		$lr_special=trim(@$_POST["lr_special"]);
-		$lr_special=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_special);
-		$lr_special=str_replace("'", '"',$lr_special);
-		$lr_bible=trim(@$_POST["lr_bible"]);
-		$lr_bible=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_bible);
-		$lr_bible=str_replace("'", '"',$lr_bible);
-		
+
+		$lr_period=trim(@$_POST["lr_period"]);
+		$lr_period=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_period);
+		$lr_period=str_replace("'", '"',$lr_period);
+
+		$lr_theme=trim(@$_POST["lr_theme"]);
+		$lr_theme=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_theme);
+		$lr_theme=str_replace("'", '"',$lr_theme);
+
+		$lr_subtheme=trim(@$_POST["lr_subtheme"]);
+		$lr_subtheme=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_subtheme);
+		$lr_subtheme=str_replace("'", '"',$lr_subtheme);
+
+		$lr_ld=trim(@$_POST["lr_ld"]);
+		$lr_ld=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_ld);
+		$lr_ld=str_replace("'", '"',$lr_ld);
+
+		$lr_sed=trim(@$_POST["lr_sed"]);
+		$lr_sed=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_sed);
+		$lr_sed=str_replace("'", '"',$lr_sed);
+
+		$lr_pd=trim(@$_POST["lr_pd"]);
+		$lr_pd=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_pd);
+		$lr_pd=str_replace("'", '"',$lr_pd);
+
+		$lr_cb=trim(@$_POST["lr_cb"]);
+		$lr_cb=str_replace("/(<\/?)(p)([^>]*>)", "",$lr_cb);
+		$lr_cb=str_replace("'", '"',$lr_cb);
+
+		$lr_m=trim(@$_POST["lr_m"]);
+		$lr_m=str_replace("/(<\/?)(p)([^>]*	>)", "",$lr_m);
+		$lr_m=str_replace("'", '"',$lr_m);
 		// detail lr
 		$dlr_id = $_POST['dlr_id'];
 		$array_dlr_id = json_decode(stripslashes($dlr_id));
 		
 		$dlr_master=trim(@$_POST["dlr_master"]);
-		
-		$dlr_subject = $_POST['dlr_subject'];
-		$array_dlr_subject = json_decode(stripslashes($dlr_subject));
-		$dlr_report = $_POST['dlr_report'];
-		$array_dlr_report = json_decode(stripslashes($dlr_report));
 
-		$result=$this->m_lesson_report->lr_create($lr_cust, $lr_lesson_plan, $lr_tanggal ,$lr_week ,$lr_day ,$lr_language ,$lr_special ,$lr_bible, 
-												$array_dlr_id, $array_dlr_subject, $array_dlr_report);
+		$dlr_student=trim(@$_POST["dlr_student"]);
+		$array_dlr_student = json_decode(stripslashes($dlr_student));
+		
+		$dlr_report_ld = $_POST['dlr_report_ld'];
+		$array_dlr_report_ld = json_decode(stripslashes($dlr_report_ld));
+
+		$dlr_report_sed = $_POST['dlr_report_sed'];
+		$array_dlr_report_sed = json_decode(stripslashes($dlr_report_sed));
+
+		$dlr_report_pd = $_POST['dlr_report_pd'];
+		$array_dlr_report_pd = json_decode(stripslashes($dlr_report_pd));
+
+		$dlr_report_cb = $_POST['dlr_report_cb'];
+		$array_dlr_report_cb = json_decode(stripslashes($dlr_report_cb));
+
+		$dlr_report_m = $_POST['dlr_report_m'];
+		$array_dlr_report_m = json_decode(stripslashes($dlr_report_m));
+
+		$result=$this->m_lesson_report->lr_create($lr_class, $lr_lesson_plan, 
+						$lr_tanggal ,
+						$lr_period ,
+						$lr_theme ,
+						$lr_subtheme ,
+						$lr_ld ,
+						$lr_sed ,
+						$lr_pd ,
+						$lr_cb ,
+						$lr_m, 
+						$array_dlr_id, 
+						$array_dlr_student, 
+						$array_dlr_report_ld,
+						$array_dlr_report_sed,
+						$array_dlr_report_pd,
+						$array_dlr_report_cb,
+						$array_dlr_report_m
+						);
 		echo $result;
+	}
+
+	function print_only(){
+  		//POST varibale here
+		$jproduk_id=trim(@$_POST["jproduk_id"]);
+		
+		$result = $this->m_lesson_report->print_paper($jproduk_id);
+		//$iklan = $this->m_master_jual_produk->iklan();
+		$rs=$result->row();
+		//$rsiklan=$iklan->row();
+		$detail_jproduk=$result->result();
+		
+		//$array_cara_bayar = $this->m_master_jual_produk->get_cara_bayar($jproduk_id);
+		
+		//$cara_bayar=$this->m_master_jual_produk->cara_bayar($jproduk_id);
+		//$cara_bayar2=$this->m_master_jual_produk->cara_bayar2($jproduk_id);
+		//$cara_bayar3=$this->m_master_jual_produk->cara_bayar3($jproduk_id);
+
+		$data['lr_period']=$rs->lr_period;
+		$data['lr_theme']=$rs->lr_theme;
+		$data['lr_subtheme']=$rs->lr_subtheme;
+		$data['lr_ld']=$rs->lr_ld;
+		$data['lr_sed']=$rs->lr_sed;
+		$data['lr_pd']=$rs->lr_pd;
+		$data['lr_cb']=$rs->lr_cb;
+		$data['lr_m']=$rs->lr_m;
+		$data['class_name']=$rs->class_name;
+		//$data['jproduk_tanggal']=date('d-m-Y', strtotime($rs->jproduk_tanggal));
+		$data['cust_nama']=$rs->cust_nama;
+		/*$data['cust_nama']=$rs->cust_nama;
+		$data['iklantoday_keterangan']=$rsiklan->iklantoday_keterangan;
+		$data['cust_alamat']=$rs->cust_alamat;
+		$data['jumlah_subtotal']=ubah_rupiah($rs->jumlah_subtotal);
+		$data['jumlah_bayar']=$rs->jproduk_bayar;
+		$data['jproduk_diskon']=$rs->jproduk_diskon;
+		$data['jproduk_cashback']=$rs->jproduk_cashback;
+		$data['jproduk_creator']=$rs->jproduk_creator;
+		*/
+		$data['detail_jproduk']=$detail_jproduk;
+		/*
+		if($cara_bayar!==NULL){
+			$data['cara_bayar1']=$cara_bayar->jproduk_cara;
+			$data['nilai_bayar1']=$cara_bayar->bayar_nilai;
+		}else{
+			$data['cara_bayar1']="";
+			$data['bayar_nilai1']="";
+		}
+		
+		if($cara_bayar2!==NULL){
+			$data['cara_bayar2']=$cara_bayar2->jproduk_cara2;
+			$data['nilai_bayar2']=$cara_bayar2->bayar2_nilai;
+		}else{
+			$data['cara_bayar2']="";
+			$data['nilai_bayar2']="";
+		}
+		
+		if($cara_bayar3!==NULL){
+			$data['cara_bayar3']=$cara_bayar3->jproduk_cara3;
+			$data['nilai_bayar3']=$cara_bayar3->bayar3_nilai;
+		}else{
+			$data['cara_bayar3']="";
+			$data['nilai_bayar3']="";
+		}
+		*/
+			
+		$viewdata=$this->load->view("main/report_formcetak",$data,TRUE);
+		$file = fopen("report_cetak.html",'w');
+		fwrite($file, $viewdata);	
+		fclose($file);
+		echo '1';        
 	}
 
 	//function for delete selected record
