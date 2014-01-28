@@ -1247,7 +1247,7 @@ Ext.onReady(function(){
 		clicksToEdit:2, // 2xClick untuk bisa meng-Edit inLine Data
 		selModel: new Ext.grid.RowSelectionModel({singleSelect:false}),
 		viewConfig: { forceFit:false},
-		<?php if(eregi('U|C',$this->m_security->get_access_group_by_kode('MENU_LESSONPLAN'))){ ?>
+		<?php if(eregi('U|C',$this->m_security->get_access_group_by_kode('MENU_CLASS'))){ ?>
 		
 		tbar: [
 		{
