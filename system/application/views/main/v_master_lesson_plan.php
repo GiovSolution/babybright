@@ -1283,7 +1283,7 @@ Ext.onReady(function(){
 	lesplan_detail_ColumnModel = new Ext.grid.ColumnModel(
 		[
 		{
-			header: 'Subject',
+			header: 'Objective',
 			dataIndex: 'dlesplan_subject',
 			width: 150,
 			sortable: true,
