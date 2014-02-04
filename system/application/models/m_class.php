@@ -77,28 +77,57 @@ class M_class extends Model{
 		}
 	}
 
-		function get_student_list($query,$start,$end){
+		function get_student_list($query,$start,$end, $aktif){
 			// Mestie disini ntik ditambahin join from master_enrichment, supaya student list e isa dikelompokkan dari yg sudah bayar enrichment saja
+			// $sql="SELECT cust_id,cust_no,cust_nama,cust_tgllahir,cust_alamat,cust_telprumah,cust_point,date_format(cust_tgllahir,'%Y-%m-%d') as cust_tgllahir 
+					// FROM customer 
+					// WHERE cust_aktif='Aktif'";
+			$rs_rows=0;
+		if(is_numeric($query)==true){
+			$sql_dstudent="SELECT dclass_student FROM class_students WHERE dclass_master='$query'";
+			$rs=$this->db->query($sql_dstudent);
+			$rs_rows=$rs->num_rows();
+		}
+		
+		if($aktif=='yes'){
 			$sql="SELECT cust_id,cust_no,cust_nama,cust_tgllahir,cust_alamat,cust_telprumah,cust_point,date_format(cust_tgllahir,'%Y-%m-%d') as cust_tgllahir 
-					FROM customer 
-					WHERE cust_aktif='Aktif'";
-			if($query<>""){
-				$sql=$sql." and (/*cust_id = '".$query."' or*/ cust_no like '%".$query."%' or cust_alamat like '%".$query."%' or cust_nama like '%".$query."%' or cust_telprumah like '%".$query."%' or cust_telprumah2 like '%".$query."%' or cust_telpkantor like '%".$query."%' or cust_hp like '%".$query."%' or cust_hp2 like '%".$query."%' or cust_hp3 like '%".$query."%' or date_format(cust_tgllahir,'%d-%m') like '%".$query."%' ) ";
-			}
-			
-			$result = $this->db->query($sql);
-			$nbrows = $result->num_rows();
-			$limit = $sql." LIMIT ".$start.",".$end;			
-			$result = $this->db->query($limit);  
-			if($nbrows>0){
-				foreach($result->result() as $row){
-					$arr[] = $row;
+				FROM customer 
+				WHERE cust_aktif='Aktif'";
+		}else{
+			$sql="SELECT cust_id,cust_no,cust_nama,cust_tgllahir,cust_alamat,cust_telprumah,cust_point,date_format(cust_tgllahir,'%Y-%m-%d') as cust_tgllahir 
+				FROM customer";
+		}
+		
+		if($query<>"" && is_numeric($query)==false){
+			$sql.=eregi("WHERE",$sql)? " AND ":" WHERE ";
+			$sql.=" (cust_panggilan like '%".$query."%' or cust_nama like '%".$query."%' ) ";
+		}else{
+			if($rs_rows){
+				$filter="";
+				$sql.=eregi("WHERE",$sql)? " AND ":" WHERE ";
+				foreach($rs->result() as $row_dstudent){
+					
+					$filter.="OR cust_id='".$row_dstudent->dclass_student."' ";
 				}
-				$jsonresult = json_encode($arr);
-				return '({"total":"'.$nbrows.'","results":'.$jsonresult.'})';
-			} else {
-				return '({"total":"0", "results":""})';
+				$sql=$sql."(".substr($filter,2,strlen($filter)).")";
 			}
+		}
+		
+		$result = $this->db->query($sql);
+		$nbrows = $result->num_rows();
+		if(($end!=0)  && ($aktif<>'yesno')){
+			$limit = $sql." LIMIT ".$start.",".$end;			
+			$result = $this->db->query($limit);
+		}
+		if($nbrows>0){
+			foreach($result->result() as $row){
+				$arr[] = $row;
+			}
+			$jsonresult = json_encode($arr);
+			return '({"total":"'.$nbrows.'","results":'.$jsonresult.'})';
+		} else {
+			return '({"total":"0", "results":""})';
+		}
 		}
 
 		//Delete detail_pendidikan

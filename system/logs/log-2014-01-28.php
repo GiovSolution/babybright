@@ -2,6 +2,10 @@
 
 ERROR - 2014-01-28 10:36:18 --> The session cookie data did not match what was expected. This could be a possible hacking attempt.
 ERROR - 2014-01-28 10:59:15 --> The session cookie data did not match what was expected. This could be a possible hacking attempt.
+<<<<<<< HEAD
+ERROR - 2014-01-28 13:29:16 --> The session cookie data did not match what was expected. This could be a possible hacking attempt.
+ERROR - 2014-01-28 13:53:25 --> Severity: Notice  --> Undefined index:  aktif /Applications/MAMP/htdocs/babybright/system/application/controllers/c_class.php 152
+=======
 ERROR - 2014-01-28 12:44:28 --> The session cookie data did not match what was expected. This could be a possible hacking attempt.
 ERROR - 2014-01-28 12:44:37 --> Severity: Notice  --> Undefined index:  master_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 27
 ERROR - 2014-01-28 12:44:37 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 29
@@ -74,6 +78,7 @@ ERROR - 2014-01-28 13:12:11 --> Severity: Notice  --> Undefined index:  master_i
 ERROR - 2014-01-28 13:12:11 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 29
 ERROR - 2014-01-28 13:12:16 --> Severity: Notice  --> Undefined index:  master_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 27
 ERROR - 2014-01-28 13:12:16 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 29
+<<<<<<< HEAD
 ERROR - 2014-01-28 13:47:39 --> Severity: Notice  --> Undefined index:  master_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 27
 ERROR - 2014-01-28 13:47:39 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 29
 ERROR - 2014-01-28 13:53:47 --> Severity: Notice  --> Undefined index:  master_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 27
@@ -84,3 +89,6 @@ ERROR - 2014-01-28 13:53:56 --> Severity: Notice  --> Undefined index:  master_i
 ERROR - 2014-01-28 13:53:56 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 29
 ERROR - 2014-01-28 13:54:03 --> Severity: Notice  --> Undefined index:  master_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 27
 ERROR - 2014-01-28 13:54:03 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 29
+=======
+>>>>>>> e55d5a690c2b10238fee13c3cf6c1fa259e5325d
+>>>>>>> 19fceaf2f8ec685bf2f66f9af19c2e349435bb2c
