@@ -50,10 +50,19 @@ html,body,table,tr,td{
         </table></td>
 	</tr>
 	<tr>
-	  <td height="20px"><table width="1240px" height="10px" border="0" cellspacing="0" cellpadding="0">
+	  <td height="80px"><table width="1240px" height="60px" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="200px">&nbsp;</td>
-          <td width="1040px" valign="bottom"><?=$jrawat_nobukti;?></td>
+          <td width="1040px" valign="bottom">
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  <?=$jrawat_nobukti;?></td>
         </tr>
       </table></td>
   </tr>
@@ -61,7 +70,7 @@ html,body,table,tr,td{
 	  <td width="1240px" height="30px">&nbsp;</td>
   </tr>
 	<tr>
-	  <td width="1240px" height="200px" valign="top">
+	  <td width="1240px" height="150px" valign="top">
 	  <?php if($detail_jrawat){?>
 	  <table width="1240px" border="0" cellspacing="0" cellpadding="0">
 	  <?php }?>
@@ -73,8 +82,12 @@ html,body,table,tr,td{
 		$total_voucher=0;
 		foreach($detail_jrawat as $list => $row) { $i+=1;?>
         <tr>
-          <td width="490px">&nbsp;<?=$i;?>.&nbsp;<?=$row->rawat_nama;?></td>
-          <td width="150px">&nbsp;<?=$row->drawat_jumlah;?></td>
+		<br>
+          <td width="600px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<?=$i;?>.
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$row->rawat_nama;?></td>
+          <td width="70px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$row->drawat_jumlah;?></td>
           <td width="160px" align="right">&nbsp;<?=rupiah($row->drawat_harga);?></td>
           <td width="170px" align="right">&nbsp;<?=$row->drawat_diskon;?></td>
           <td width="270px" align="right">&nbsp;<?=rupiah(($row->drawat_jumlah)*($row->jumlah_subtotal));?></td>
@@ -105,7 +118,9 @@ html,body,table,tr,td{
 	  </td>
   </tr>
   <tr>
-  <td height="30px">
+  <td height="30px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;
   <?=$iklantoday_keterangan;?>
   </td>
 	<tr>
@@ -125,29 +140,24 @@ html,body,table,tr,td{
           <td>&nbsp;</td>
         </tr>
         <tr>
-          <td>&nbsp;</td>
           <td><?php if($cara_bayar<>''){?><?=$cara_bayar;?>&nbsp;:&nbsp;<?=rupiah($bayar_nilai);?><?php }?></td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
+          <td><?php if($cara_bayar2<>''){?><?=$cara_bayar2;?>&nbsp;:&nbsp;<?=rupiah($bayar2_nilai);?><?php }?></td>
+          <td><?php if($cara_bayar3<>''){?><?=$cara_bayar3;?>&nbsp;:&nbsp;<?=rupiah($bayar3_nilai);?><?php }?></td>
           <td align="right">
 			<?php if($total_voucher<>0){?><?=rupiah($total_voucher);?><?php }?>
 			<?php if($total_diskon_tamb<>0){?><?=rupiah($total_diskon_tamb);?><?php }?>
 		  </td>
+          <td align="right"><?=rupiah($total);?></td>
         </tr>
+		<? /*
         <tr>
           <td>&nbsp;</td>
-          <td><?php if($cara_bayar2<>''){?><?=$cara_bayar2;?>&nbsp;:&nbsp;<?=rupiah($bayar2_nilai);?><?php }?></td>
+          <td></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td align="right"><?=rupiah($jumlah_bayar);?></td>
         </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><?php if($cara_bayar3<>''){?><?=$cara_bayar3;?>&nbsp;:&nbsp;<?=rupiah($bayar3_nilai);?><?php }?></td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td align="right"><?=rupiah($total);?></td>
-        </tr>
+		*/?>
       </table></td>
   </tr>
 </table>

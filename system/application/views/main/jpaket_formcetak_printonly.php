@@ -53,11 +53,20 @@ html,body,table,tr,td{
         </table></td>
 	</tr>
 	<tr>
-	  <td height="40px">
-	  <table width="1240px" height="34px" border="0" cellspacing="0" cellpadding="0">
+	  <td height="20px">
+	  <table width="1240px" height="60px" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="200px">&nbsp;</td>
-          <td width="1040px" valign="bottom"><?=$jpaket_nobukti;?></td>
+          <td width="1040px" valign="bottom">
+		   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  <?=$jpaket_nobukti;?></td>
         </tr>
       </table></td>
   </tr>
@@ -75,12 +84,17 @@ html,body,table,tr,td{
 		$total_voucher=0;
 		foreach($detail_jpaket as $list => $row) { $i+=1;?>
         <tr>
-          <td width="490px">&nbsp;<?=$i;?>.&nbsp;<?=$row->paket_nama;?></td>
-          <td width="150px">&nbsp;<?=$row->dpaket_jumlah;?></td>
-          <td width="160px" align="right">&nbsp;<?=rupiah($row->dpaket_harga);?></td>
+		<br><br>
+		  <td width="60px">&nbsp;</td>
+          <td width="530px">
+							<?=$i;?>.
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$row->paket_nama;?><br>
+							<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[&nbsp;&nbsp;
+							Exp : <?=$row->tgl_kadaluarsa;?>&nbsp;&nbsp;]</b></td>
+          <td width="80px">&nbsp;<?=$row->dpaket_jumlah;?></td>
+          <td width="130px" align="right">&nbsp;<?=rupiah($row->dpaket_harga);?></td>
           <td width="170px" align="right">&nbsp;<?=$row->dpaket_diskon;?></td>
           <td width="270px" align="right">&nbsp;<?=rupiah(($row->dpaket_jumlah)*($row->jumlah_subtotal));?></td>
-		  <td width="170px" align="right"><b>[&nbsp;&nbsp;Exp : <?=$row->tgl_kadaluarsa;?>&nbsp;&nbsp;]</b></td>
         </tr>
 		<?php 
 			$subtotal+=(($row->dpaket_jumlah)*($row->jumlah_subtotal));
@@ -94,7 +108,9 @@ html,body,table,tr,td{
   </tr>
   
   <tr>
-  <td height="30px">
+  <td height="30px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;
   <?=$iklantoday_keterangan;?>
   </td>
   </tr>
@@ -116,30 +132,15 @@ html,body,table,tr,td{
           <td>&nbsp;</td>
         </tr>
         <tr>
-          <td>&nbsp;</td>
+          
           <td><?php if($cara_bayar1<>''){?><?=$cara_bayar1;?>&nbsp;:&nbsp;<?=rupiah($nilai_bayar1);?><?php }?></td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
+          <td><?php if($cara_bayar2<>''){?><?=$cara_bayar2;?>&nbsp;:&nbsp;<?=rupiah($nilai_bayar2);?><?php }?></td>
+          <td><?php if($cara_bayar3<>''){?><?=$cara_bayar3;?>&nbsp;:&nbsp;<?=rupiah($nilai_bayar3);?><?php }?></td>
           <td align="right">
 			<?php if($total_voucher<>0){?><?=rupiah($total_voucher);?><?php }?>
 			<?php if($total_diskon_tamb<>0){?><?=rupiah($total_diskon_tamb);?><?php }?>
 		  </td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><?php if($cara_bayar2<>''){?><?=$cara_bayar2;?>&nbsp;:&nbsp;<?=rupiah($nilai_bayar2);?><?php }?></td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-		  <td>&nbsp;</td>
-          <!--<td align="right"><//?=rupiah($jumlah_tunai);?></td>-->
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><?php if($cara_bayar3<>''){?><?=$cara_bayar3;?>&nbsp;:&nbsp;<?=rupiah($nilai_bayar3);?><?php }?></td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td align="right"><?=rupiah($total);?></td>
-        </tr>
+		  <td align="right"><?=rupiah($total);?></td>
       </table></td>
   </tr>
 </table>
