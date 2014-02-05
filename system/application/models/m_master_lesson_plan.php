@@ -264,7 +264,7 @@ class M_master_lesson_plan extends Model{
 		
 		//function for update record
 		function lesplan_update(
-			$lesplan_id ,$lesplan_tanggal, $lesplan_class, $lesplan_teacher, $lesplan_theme, $lesplan_sub_theme, $lesplan_character_imp ,$lesplan_week ,$lesplan_day, $lesplan_agreement, 
+			$lesplan_id ,$lesplan_tanggal, $lesplan_class, $lesplan_teacher, $lesplan_theme, $lesplan_sub_theme, $lesplan_character_imp, $lesplan_month ,$lesplan_week ,$lesplan_day, $lesplan_agreement, 
 			$array_dlesplan_id, 
 			$array_dlesplan_subject, 
 			$array_dlesplan_time_start, 
@@ -277,6 +277,7 @@ class M_master_lesson_plan extends Model{
 				"lesplan_theme"=>$lesplan_theme,
 				"lesplan_sub_theme"=>$lesplan_sub_theme, 
 				"lesplan_character_imp"=>$lesplan_character_imp, 
+				"lesplan_month"=>$lesplan_month, 
 				"lesplan_week"=>$lesplan_week, 
 				"lesplan_day"=>$lesplan_day, 
 				"lesplan_agreement"=>$lesplan_agreement, 
@@ -326,7 +327,7 @@ class M_master_lesson_plan extends Model{
 		}
 		
 		//function for create new record
-		function lesplan_create($lesplan_tanggal, $lesplan_class, $lesplan_teacher, $lesplan_theme, $lesplan_sub_theme, $lesplan_character_imp ,$lesplan_week ,$lesplan_day, $lesplan_agreement,
+		function lesplan_create($lesplan_tanggal, $lesplan_class, $lesplan_teacher, $lesplan_theme, $lesplan_sub_theme, $lesplan_character_imp ,$lesplan_month ,$lesplan_week ,$lesplan_day, $lesplan_agreement,
 			$array_dlesplan_id, 
 			$array_dlesplan_subject, 
 			$array_dlesplan_time_start, 
@@ -347,6 +348,7 @@ class M_master_lesson_plan extends Model{
 				"lesplan_theme"=>$lesplan_theme, 
 				"lesplan_sub_theme"=>$lesplan_sub_theme, 
 				"lesplan_character_imp"=>$lesplan_character_imp, 
+				"lesplan_month"=>$lesplan_month, 
 				"lesplan_week"=>$lesplan_week, 
 				"lesplan_day"=>$lesplan_day, 
 				"lesplan_agreement"=>$lesplan_agreement, 

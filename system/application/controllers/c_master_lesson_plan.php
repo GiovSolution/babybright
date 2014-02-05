@@ -153,6 +153,9 @@ class C_master_lesson_plan extends Controller {
 		$lesplan_character_imp=trim(@$_POST["lesplan_character_imp"]);
 		$lesplan_character_imp=str_replace("/(<\/?)(p)([^>]*>)", "",$lesplan_character_imp);
 		$lesplan_character_imp=str_replace("'", '"',$lesplan_character_imp);
+		$lesplan_month=trim(@$_POST["lesplan_month"]);
+		$lesplan_month=str_replace("/(<\/?)(p)([^>]*>)", "",$lesplan_month);
+		$lesplan_month=str_replace("'", '"',$lesplan_month);
 		$lesplan_week=trim(@$_POST["lesplan_week"]);
 		$lesplan_week=str_replace("/(<\/?)(p)([^>]*>)", "",$lesplan_week);
 		$lesplan_week=str_replace("'", '"',$lesplan_week);
@@ -189,7 +192,7 @@ class C_master_lesson_plan extends Controller {
 		// eof detail lp
 
 		$result = $this->m_master_lesson_plan->lesplan_update(
-			$lesplan_id ,$lesplan_tanggal, $lesplan_class, $lesplan_teacher, $lesplan_theme, $lesplan_sub_theme, $lesplan_character_imp ,$lesplan_week ,$lesplan_day, $lesplan_agreement, 
+			$lesplan_id ,$lesplan_tanggal, $lesplan_class, $lesplan_teacher, $lesplan_theme, $lesplan_sub_theme, $lesplan_character_imp, $lesplan_month ,$lesplan_week ,$lesplan_day, $lesplan_agreement, 
 			$array_dlesplan_id, 
 			$array_dlesplan_subject, 
 			$array_dlesplan_time_start, 
@@ -216,6 +219,9 @@ class C_master_lesson_plan extends Controller {
 		$lesplan_character_imp=trim(@$_POST["lesplan_character_imp"]);
 		$lesplan_character_imp=str_replace("/(<\/?)(p)([^>]*>)", "",$lesplan_character_imp);
 		$lesplan_character_imp=str_replace("'", '"',$lesplan_character_imp);
+		$lesplan_month=trim(@$_POST["lesplan_month"]);
+		$lesplan_month=str_replace("/(<\/?)(p)([^>]*>)", "",$lesplan_month);
+		$lesplan_month=str_replace("'", '"',$lesplan_month);
 		$lesplan_week=trim(@$_POST["lesplan_week"]);
 		$lesplan_week=str_replace("/(<\/?)(p)([^>]*>)", "",$lesplan_week);
 		$lesplan_week=str_replace("'", '"',$lesplan_week);
@@ -252,7 +258,7 @@ class C_master_lesson_plan extends Controller {
 		// eof detail lp
 
 
-		$result=$this->m_master_lesson_plan->lesplan_create($lesplan_tanggal, $lesplan_class, $lesplan_teacher, $lesplan_theme, $lesplan_sub_theme, $lesplan_character_imp ,$lesplan_week ,$lesplan_day, $lesplan_agreement, 
+		$result=$this->m_master_lesson_plan->lesplan_create($lesplan_tanggal, $lesplan_class, $lesplan_teacher, $lesplan_theme, $lesplan_sub_theme, $lesplan_character_imp,$lesplan_month ,$lesplan_week ,$lesplan_day, $lesplan_agreement, 
 			$array_dlesplan_id, 
 			$array_dlesplan_subject, 
 			$array_dlesplan_time_start, 

@@ -29,3 +29,4 @@ ERROR - 2014-02-05 10:56:19 --> Severity: Notice  --> Undefined index:  master_i
 ERROR - 2014-02-05 10:56:19 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 29
 ERROR - 2014-02-05 10:59:08 --> Severity: Notice  --> Undefined index:  master_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 27
 ERROR - 2014-02-05 10:59:08 --> Severity: Notice  --> Undefined index:  selected_id /Applications/MAMP/htdocs/babybright/system/application/controllers/c_lesson_report.php 29
+ERROR - 2014-02-05 14:28:29 --> Query error: 
