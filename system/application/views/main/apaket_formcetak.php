@@ -13,13 +13,14 @@ html,body,table,tr,td{
 }
 </style>
 </head>
-<body onload="window.print();window.close();">
+<body onload="window.print();">
 <table width="1240px" border="0px" cellpadding="0px" cellspacing="0px">
 	<tr>
-		<td height="90px"><table width="1240px" height="90px" border="0" cellspacing="0" cellpadding="0">
+		<td height="90px"><table width="1240px" height="180px" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="700px" align="center" valign="bottom"><font style="font-size:18px; font-weight:bold; border:#000000 1px solid">PENGAMBILAN PAKET </font></td>
-            <td width="540px" valign="top"><table width="540px" border="0" cellspacing="0" cellpadding="0">
+            <td width="700px" height="50px" align="center" valign="bottom"></td>
+            <td width="540px" valign="top">
+			<table width="540px" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="60px" align="right">Tanggal</td>
                 <td width="480px">:&nbsp;&nbsp;<?=$dapaket_tanggal;?></td>
@@ -36,7 +37,10 @@ html,body,table,tr,td{
                 <td align="right">&nbsp;&nbsp;</td>
                 <td>&nbsp;&nbsp;</td>
               </tr>
-            </table></td>
+            </table>
+				<br><br>
+				<font style="font-size:18px; font-weight:bold;">PENGAMBILAN PAKET </font>
+			</td>
           </tr>
         </table></td>
 	</tr>
@@ -53,13 +57,18 @@ html,body,table,tr,td{
 	  <td width="1240px" height="25px">&nbsp;</td>
   </tr>
 	<tr>
-	  <td width="1240px" height="200px" valign="top">
+	  <td width="1240px" height="180px" valign="top">
 	  <table width="1240px" border="0" cellspacing="0" cellpadding="0">
 	  	<?php 
 		$i=0;
 		foreach($detail_ambil_paket as $list => $row) { $i+=1;?>
         <tr>
-          <td width="1240px">&nbsp;<?=$i;?>.&nbsp;<?=$row->paket_nama;?>&nbsp;(<?=$row->rawat_nama;?>&nbsp;-&nbsp;<?=$row->jpaket_nobukti;?>)&nbsp;&nbsp;<strong>diambil oleh:</strong> <?=$row->dapaket_cust_no;?> - <?=$row->dapaket_cust_nama;?>&nbsp;- <b>Jml : </b>&nbsp;<?=$row->dapaket_jumlah;?>&nbsp;- <b>Sisa : </b>&nbsp;<?=$row->dpaket_sisa_paket;?>&nbsp;- <b>Tgl Kadaluarsa : </b>&nbsp;<?=$row->dpaket_kadaluarsa;?></td>
+			<td width="60px">&nbsp;</td>
+			<td width="1180px">&nbsp;<?=$i;?>.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<?=$row->paket_nama;?>&nbsp;(<?=$row->rawat_nama;?>&nbsp;-&nbsp;<?=$row->jpaket_nobukti;?>)&nbsp;&nbsp;<strong>
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diambil oleh:</strong> <?=$row->dapaket_cust_no;?> - <?=$row->dapaket_cust_nama;?> <b>
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jml : </b>&nbsp;<?=$row->dapaket_jumlah;?>&nbsp;<b>Sisa : </b>&nbsp;<?=$row->dpaket_sisa_paket;?>&nbsp; <b>
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tgl Kadaluarsa : </b>&nbsp;<?=$row->dpaket_kadaluarsa;?></td>
         </tr>
 		<?php 
 		}
@@ -68,7 +77,7 @@ html,body,table,tr,td{
 	  </td>
   </tr>
   <tr>
-  <td height="30px">&nbsp;
+  <td>&nbsp;
   
   </td>
   </tr>
@@ -76,7 +85,7 @@ html,body,table,tr,td{
 	  <td width="1240px"><table width="1240px" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="160px">&nbsp;</td>
-          <td width="280px"><?=$_SESSION[SESSION_USERID];?></td>
+          <td width="280px"><br><?=$_SESSION[SESSION_USERID];?></td>
           <td width="420px">&nbsp;</td>
           <td width="180px">&nbsp;</td>
           <td width="200px" align="right">&nbsp;</td>
@@ -87,27 +96,6 @@ html,body,table,tr,td{
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td align="right">&nbsp;</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td align="right">&nbsp;</td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td align="right">&nbsp;</td>
         </tr>
       </table></td>
   </tr>

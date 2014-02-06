@@ -60,10 +60,20 @@ html,body,table,tr,td{
         </table></td>
 	</tr>
 	<tr>
-	  <td height="20px"><table width="1240px" height="10px" border="0" cellspacing="0" cellpadding="0">
+	  <td height="20px"><table width="1240px" height="60px" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="200px">&nbsp;</td>
-          <td width="1040px" valign="bottom"><?=$jproduk_nobukti;?></td>
+          <td width="1040px" valign="bottom" align="left">
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+		  <?=$jproduk_nobukti;?></td>
         </tr>
       </table></td>
   </tr>
@@ -81,9 +91,13 @@ html,body,table,tr,td{
 		$total_voucher=0;
 		foreach($detail_jproduk as $list => $row) { $i+=1;?>
         <tr>
-          <td width="490px">&nbsp;<?=$i;?>.&nbsp;<?=$row->produk_nama;?></td>
-          <td width="150px">&nbsp;<?=$row->dproduk_jumlah;?> <?=$row->satuan_nama;?></td>
-          <td width="160px" align="right">&nbsp;<?=rupiah(($row->dproduk_harga));?></td>
+		<br><br>
+          <td width="570px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<?=$i;?>.
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$row->produk_nama;?></td>
+          <td width="100px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$row->dproduk_jumlah;?> <?=$row->satuan_nama;?></td>
+          <td width="130px" align="right">&nbsp;<?=rupiah(($row->dproduk_harga));?></td>
           <td width="170px" align="right">&nbsp;<?=$row->dproduk_diskon;?></td>
           <td width="270px" align="right">&nbsp;<?=rupiah(($row->dproduk_jumlah)*($row->jumlah_subtotal));?></td>
         </tr>
@@ -98,7 +112,9 @@ html,body,table,tr,td{
 	  </td>
   </tr>
   <tr>
-  <td height="30px">
+  <td height="30px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;
   <?=$iklantoday_keterangan;?>
   </td>
   </tr>
@@ -119,30 +135,16 @@ html,body,table,tr,td{
           <td>&nbsp;</td>
         </tr>
         <tr>
-          <td>&nbsp;</td>
           <td><?php if($cara_bayar1<>''){?><?=$cara_bayar1;?>&nbsp;:&nbsp;<?=rupiah($nilai_bayar1);?><?php }?></td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
+          <td><?php if($cara_bayar2<>''){?><?=$cara_bayar2;?>&nbsp;:&nbsp;<?=rupiah($nilai_bayar2);?><?php }?></td>
+          <td><?php if($cara_bayar3<>''){?><?=$cara_bayar3;?>&nbsp;:&nbsp;<?=rupiah($nilai_bayar3);?><?php }?></td>
 		  <td align="right">
           <?php if($total_voucher<>0){?><?=rupiah($total_voucher);?><?php }?>
 		  <?php if($total_diskon_tamb<>0){?><?=rupiah($total_diskon_tamb);?><?php }?>
 		  </td>
+		  <td align="right"><?=rupiah($total);?></td>
         </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><?php if($cara_bayar2<>''){?><?=$cara_bayar2;?>&nbsp;:&nbsp;<?=rupiah($nilai_bayar2);?><?php }?></td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-		  <td>&nbsp;</td>
-          <!--<td align="right"><//?=rupiah($jumlah_bayar);?></td>-->
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><?php if($cara_bayar3<>''){?><?=$cara_bayar3;?>&nbsp;:&nbsp;<?=rupiah($nilai_bayar3);?><?php }?></td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-          <td align="right"><?=rupiah($total);?></td>
-        </tr>
+
       </table></td>
   </tr>
 </table>

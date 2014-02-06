@@ -76,6 +76,7 @@ var lesplan_bibleField;
 var anam_alergiField;
 var anam_obatalergiField;
 var anam_efekobatalergiField;
+var lesplan_monthField;
 var lesplan_weekField;
 var lesplan_dayField;
 var lesplan_agreementField;
@@ -201,6 +202,7 @@ Ext.onReady(function(){
 		var lesplan_theme_create=null; 
 		var lesplan_sub_theme_create=null; 
 		var lesplan_character_imp_create=null; 
+		var lesplan_month_create=null; 
 		var lesplan_week_create=null; 
 		var lesplan_day_create=null; 
 		var lesplan_agreement_create=null; 
@@ -212,6 +214,7 @@ Ext.onReady(function(){
 		if(lesplan_themeField.getValue()!== ""){lesplan_theme_create = lesplan_themeField.getValue();} 
 		if(lesplan_sub_themeField.getValue()!== ""){lesplan_sub_theme_create = lesplan_sub_themeField.getValue();} 
 		if(lesplan_character_impField.getValue()!== ""){lesplan_character_imp_create = lesplan_character_impField.getValue();} 
+		if(lesplan_monthField.getValue()!== null){lesplan_month_create = lesplan_monthField.getValue();} 
 		if(lesplan_weekField.getValue()!== null){lesplan_week_create = lesplan_weekField.getValue();} 
 		if(lesplan_dayField.getValue()!== null){lesplan_day_create = lesplan_dayField.getValue();} 
 		if(lesplan_agreementField.getValue()!== null){lesplan_agreement_create = lesplan_agreementField.getValue();} 
@@ -263,6 +266,7 @@ Ext.onReady(function(){
 				lesplan_theme			: lesplan_theme_create, 		
 				lesplan_sub_theme		: lesplan_sub_theme_create, 		
 				lesplan_character_imp	: lesplan_character_imp_create, 		
+				lesplan_month			: lesplan_month_create, 
 				lesplan_week			: lesplan_week_create, 
 				lesplan_day				: lesplan_day_create,
 				lesplan_agreement		: lesplan_agreement_create,
@@ -354,6 +358,8 @@ Ext.onReady(function(){
 		lesplan_special_actField.setValue(null);
 		lesplan_bibleField.reset();
 		lesplan_bibleField.setValue(null);
+		lesplan_monthField.reset();
+		lesplan_monthField.setValue(null);
 		lesplan_weekField.reset();
 		lesplan_weekField.setValue(null);
 		lesplan_dayField.reset();
@@ -380,6 +386,7 @@ Ext.onReady(function(){
 		lesplan_sub_themeField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_sub_theme'));
 		lesplan_character_impField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_character_imp'));
 		lesplan_tanggalField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_tanggal'));
+		lesplan_monthField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_month'));
 		lesplan_weekField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_week'));
 		lesplan_dayField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_day'));
 		lesplan_agreementField.setValue(lesplan_ListEditorGrid.getSelectionModel().getSelected().get('lesplan_agreement'));
@@ -517,6 +524,7 @@ Ext.onReady(function(){
 			{name: 'lesplan_sub_theme', type: 'string', mapping: 'lesplan_sub_theme'}, 
 			{name: 'lesplan_character_imp', type: 'string', mapping: 'lesplan_character_imp'}, 
 			{name: 'lesplan_tanggal', type: 'date', dateFormat: 'Y-m-d', mapping: 'lesplan_tanggal'}, 
+			{name: 'lesplan_month', type: 'string', mapping: 'lesplan_month'}, 
 			{name: 'lesplan_week', type: 'int', mapping: 'lesplan_week'}, 
 			{name: 'lesplan_day', type: 'int', mapping: 'lesplan_day'}, 
 			{name: 'lesplan_agreement', type: 'string', mapping: 'lesplan_agreement'}, 
@@ -580,6 +588,12 @@ Ext.onReady(function(){
 				format: 'Y-m-d'
 			})
 			<?php } ?>
+		},
+		{
+			header: 'Month',
+			dataIndex: 'lesplan_month',
+			width: 150,
+			sortable: true
 		},
 		{
 			header: 'Week',
@@ -1080,6 +1094,24 @@ Ext.onReady(function(){
 		maxLength: 500,
 		anchor: '95%'
 	});
+			
+	/* Identify  lesplan_month Field */
+	lesplan_monthField= new Ext.form.ComboBox({
+		id: 'lesplan_monthField',
+		fieldLabel: 'Month',
+		store:new Ext.data.SimpleStore({
+			fields:['lr_month_value', 'lr_month_display'],
+			data:[['01','Januari'],['02','Pebruari'],['03','Maret'],['04','April'],['05','Mei'],['06','Juni'],['07','Juli'],['08','Agustus'],['09','September'],['10','Oktober'],['11','Nopember'],['12','Desember']]
+
+		}),
+		mode: 'local',
+		displayField: 'lr_month_display',
+		valueField: 'lr_month_value',
+		//anchor: '95%',
+		width: 100,
+		triggerAction: 'all'	
+	});
+
 	/* Identify  anam_hamil Field */
 	lesplan_weekField= new Ext.form.ComboBox({
 		id: 'lesplan_weekField',
@@ -1174,7 +1206,7 @@ Ext.onReady(function(){
 				columnWidth:0.5,
 				layout: 'form',
 				border:false,
-				items: [lesplan_character_impField, lesplan_teacherField, lesplan_weekField , lesplan_dayField , lesplan_agreementField] 
+				items: [lesplan_character_impField, lesplan_teacherField, lesplan_monthField, lesplan_weekField , lesplan_dayField , lesplan_agreementField] 
 			}
 			
 			]
@@ -1283,7 +1315,7 @@ Ext.onReady(function(){
 	lesplan_detail_ColumnModel = new Ext.grid.ColumnModel(
 		[
 		{
-			header: 'Subject',
+			header: 'Objective',
 			dataIndex: 'dlesplan_subject',
 			width: 150,
 			sortable: true,
