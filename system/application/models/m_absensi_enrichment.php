@@ -112,6 +112,22 @@ class M_absensi_enrichment extends Model{
 		function absenrich_create($absenrich_cust, $absenrich_tgl, $absenrich_class, $absenrich_keterangan, $absenrich_pengantar1, $absenrich_pengantar2, $absenrich_pengantar3, $absenrich_pengantar4, $absenrich_pengantar5, $absenrich_check1, $absenrich_check2, $absenrich_check3, $absenrich_check4, $absenrich_check5){
 
 			$datetime_now = date('Y-m-d H:i:s');
+			$datetime = date('Y-m-d');
+
+			$sql_temp = "SELECT absenrich_id 
+						FROM absensi_enrichment
+						WHERE absenrich_cust = '".$absenrich_cust."' and absenrich_tgl = '".$datetime."'
+							";
+			$result=$this->db->query($sql_temp);
+			if($result->num_rows())
+			{
+				return '-1';
+
+			}
+			else{
+
+
+			
 
 			if($absenrich_check1=='true')
 			{	$pengantar1 = $absenrich_pengantar1; }
@@ -139,7 +155,6 @@ class M_absensi_enrichment extends Model{
 			{	$pengantar5 = "";	}
 
 			$data = array(
-	
 				"absenrich_cust"=>$absenrich_cust,	
 				"absenrich_tgl"=>$absenrich_tgl,	
 				"absenrich_class"=>$absenrich_class,	
@@ -157,6 +172,7 @@ class M_absensi_enrichment extends Model{
 				return '1';
 			else
 				return '0';
+			}
 		}
 		
 		//fcuntion for delete record

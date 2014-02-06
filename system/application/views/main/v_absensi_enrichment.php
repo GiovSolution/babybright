@@ -230,6 +230,7 @@ var absen_post2db = 'CREATE';
 var msg = '';
 var absen_pageS=15;
 
+var temp_image = '';
 var temp_pengantar1='';
 var temp_pengantar2='';
 var temp_pengantar3='';
@@ -368,13 +369,13 @@ Ext.onReady(function(){
 						case 1:
 							Ext.MessageBox.alert(absen_post2db+' OK','Data Absensi Enrichment berhasil disimpan');
 							absen_enrich_DataStore.reload();
-							absenrich_reset_form();
+							// absenrich_reset_form();
 							absen_enrich_CreateWindow.hide();
 							break;
 						default:
 							Ext.MessageBox.show({
 							   title: 'Warning',
-							   msg: 'Data Absensi Enrichment tidak bisa disimpan !.',
+							   msg: 'Data Absensi Enrichment Sudah pernah disimpan sebelumnya.',
 							   buttons: Ext.MessageBox.OK,
 							   animEl: 'save',
 							   icon: Ext.MessageBox.WARNING
@@ -673,6 +674,7 @@ Ext.onReady(function(){
 		/* dataIndex => insert intotbl_usersColumnModel, Mapping => for initiate table column */ 
 			{name: 'cust_id', type: 'int', mapping: 'cust_id'},
 			{name: 'class_nama', type: 'string', mapping: 'class_name'},
+			{name: 'cust_image', type: 'string', mapping: 'cust_image'},
 			{name: 'cust_image_pengantar1', type: 'string', mapping: 'cust_image_pengantar1'},
 			{name: 'cust_nama_pengantar1', type: 'string', mapping: 'cust_nama_pengantar1'},
 			{name: 'cust_image_pengantar2', type: 'string', mapping: 'cust_image_pengantar2'},
@@ -703,6 +705,7 @@ Ext.onReady(function(){
 				},
 			hidden: true
 		},
+		/*
 		{
 			header: '<div align="center">' + 'Tanggal Hadir' + '</div>',
 			dataIndex: 'absenrich_tgl',
@@ -710,6 +713,7 @@ Ext.onReady(function(){
 			sortable: true,
 			renderer: Ext.util.Format.dateRenderer('Y-m-d')
 		},
+		*/
 		{
 			header: '<div align="center">' + 'Nama Customer/Baby' + '</div>',
 			dataIndex: 'cust_nama',
@@ -727,8 +731,12 @@ Ext.onReady(function(){
 			header: '<div align="center">' + 'Keterangan' + '</div>',
 			dataIndex: 'absenrich_keterangan',
 			width: 200,
-			sortable: true
+			sortable: true,
+			editor: new Ext.form.TextField({
+				maxLength: 250
+          	})
 		},
+		/*
 		{
 			header: '<div align="center">' + 'Pengantar 1' + '</div>',
 			dataIndex: 'absenrich_pengantar1',
@@ -747,6 +755,7 @@ Ext.onReady(function(){
 			width: 120,
 			sortable: true
 		},
+		*/
 		{
 			header: 'Creator',
 			dataIndex: 'absenrich_creator',
@@ -759,8 +768,8 @@ Ext.onReady(function(){
 			dataIndex: 'absenrich_date_create',
 			width: 150,
 			sortable: true,
-			renderer: Ext.util.Format.dateRenderer('Y-m-d'),
-			hidden: true
+			renderer: Ext.util.Format.dateRenderer('Y-m-d H:i:s')
+			// hidden: true
 		},
 		{
 			header: 'Last Update by',
@@ -832,6 +841,7 @@ Ext.onReady(function(){
 			text: 'Delete',
 			tooltip: 'Delete selected record',
 			iconCls:'icon-delete',
+			hidden : true,
 			handler: absenrich_confirm_delete   // Confirm before deleting
 		}, '-', 
 		<?php } ?>
@@ -967,7 +977,7 @@ Ext.onReady(function(){
 		triggerAction: 'all',
 		lazyRender:true,
 		listClass: 'x-combo-list-small',
-		anchor: '65%'
+		anchor: '60%'
 		//hidden: true
 	});
 
@@ -993,7 +1003,7 @@ Ext.onReady(function(){
 		id: 'absen_enrich_keteranganField',
 		fieldLabel: 'Keterangan',
 		maxLength: 250,
-		anchor: '80%'
+		anchor: '60%'
 	});
 	/* Identify Absen Enrich Status Field */
 	absen_enrich_statusField= new Ext.form.ComboBox({
@@ -1012,6 +1022,18 @@ Ext.onReady(function(){
 		triggerAction: 'all'	
 	});
 	
+	absenrich_displaycustomerField = new Ext.form.DisplayField({
+		fieldLabel : 'Photo',
+		height : 100,
+		enableKeyEvents: true
+	});
+	absenrich_filecustomerField = new Ext.form.FileUploadField({
+        fieldLabel : 'Upload Image',
+        width: 250,
+        hidden : true,
+        enableKeyEvents: true
+    });
+
   	/*identify Pengantar Nama 1 Field */
 	absenrich_nama_pengantar1Field= new Ext.form.TextField({
 		id: 'absenrich_nama_pengantar1Field',
@@ -1151,7 +1173,7 @@ Ext.onReady(function(){
 						border:false,
 						labelAlign: 'left',
 						labelWidth: 120,
-						items: [absenrich_checkpengantar1Field, absenrich_displayPengantar1Field,absenrich_nama_pengantar1Field, {height : 50}, absenrich_checkpengantar3Field, absenrich_displayPengantar3Field,absenrich_nama_pengantar3Field,  {height : 50},absenrich_checkpengantar5Field, absenrich_displayPengantar5Field,absenrich_nama_pengantar5Field  ] 
+						items: [/*absenrich_checkpengantar1Field,*/ absenrich_displayPengantar1Field,absenrich_nama_pengantar1Field, {height : 50}, /*absenrich_checkpengantar3Field,*/ absenrich_displayPengantar3Field,absenrich_nama_pengantar3Field,  {height : 50}, /*absenrich_checkpengantar5Field,*/ absenrich_displayPengantar5Field,absenrich_nama_pengantar5Field  ] 
 					},
 					{
 						columnWidth:0.5,
@@ -1159,7 +1181,7 @@ Ext.onReady(function(){
 						labelAlign: 'left',
 						labelWidth: 120,
 						border:false,
-						items: [absenrich_checkpengantar2Field, absenrich_displayPengantar2Field,absenrich_nama_pengantar2Field,  {height : 50},absenrich_checkpengantar4Field, absenrich_displayPengantar4Field,absenrich_nama_pengantar4Field,] 
+						items: [/*absenrich_checkpengantar2Field,*/ absenrich_displayPengantar2Field,absenrich_nama_pengantar2Field,  {height : 50}, /*absenrich_checkpengantar4Field,*/ absenrich_displayPengantar4Field,absenrich_nama_pengantar4Field,] 
 					}
 		]
 	});
@@ -1173,7 +1195,7 @@ Ext.onReady(function(){
 		height: 975,
 		width: 850, 
 		frame : true,       
-		items: [absen_enrich_custField,absen_enrich_classField, absen_enrich_tglField, absen_enrich_keteranganField, absenrich_data_pengantarGroupField],
+		items: [absen_enrich_custField, absenrich_displaycustomerField, absen_enrich_classField, absen_enrich_tglField,/* absen_enrich_keteranganField,*/ absenrich_data_pengantarGroupField],
 		buttons: [
 
 			{
@@ -1298,7 +1320,7 @@ Ext.onReady(function(){
 		id: 'absen_enrich_keteranganSearchField',
 		fieldLabel: 'Keterangan',
 		maxLength: 250,
-		anchor: '80%'
+		anchor: '50%'
 	
 	});
 	/* Identify  absenrich_status Search Field */
@@ -1511,6 +1533,15 @@ Ext.onReady(function(){
 								absenrich_record_temp=absenrich_datapengantarloadDataStore.getAt(0).data;
 								absen_enrich_classField.setValue(absenrich_record_temp.class_nama);	
 
+								//Menampilkan Photo Customer
+								absenrich_filecustomerField.setValue(absenrich_record_temp.cust_image);
+								temp_image = '';
+								temp_image += '<img src="./photos/';
+								temp_image += absenrich_filecustomerField.getValue();
+								temp_image += '" alt="Thumbnail" width="100" height="100"/>';
+								absenrich_displaycustomerField.setValue(temp_image);
+
+
 								// Menampilkan Data Pengantar 1
 								absenrich_filepengantar1Field.setValue(absenrich_record_temp.cust_image_pengantar1);
 								absenrich_nama_pengantar1Field.setValue(absenrich_record_temp.cust_nama_pengantar1);	
@@ -1555,6 +1586,9 @@ Ext.onReady(function(){
 								temp_pengantar5 += absenrich_filepengantar5Field.getValue();
 								temp_pengantar5 += '" alt="Thumbnail" width="150" height="150"/>';
 								absenrich_displayPengantar5Field.setValue(temp_pengantar5);
+
+								absensi_enrichment_create();
+
 							}
 							else{
 								absen_enrich_classField.setValue("");
@@ -1563,8 +1597,13 @@ Ext.onReady(function(){
 					}
 			}); 
 		}	
+
+
+
 	});
 
+	
+	
 	
 });
 	</script>
